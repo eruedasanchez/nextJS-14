@@ -146,6 +146,165 @@ Además, cuenta con un archivo `global.css` con los estilos que vamos a tener qu
 
 - `lib` es un carpeta que contiene las herramientas para hacer fetching de datos `data.ts` para conectarse con DB **postgres**, utilidades `utils.ts`, definiciones `definitions.ts` de los tipos de TS que vamos a utilizar en nuestra aplicación y `placeholder-data.js` en el caso de que no deseemos hacer el fetching con sql y si con placeholder.
 
+### Cargando los estilos
+
+Para cargar los estilos globales, tenemos que ir a **layout.tsx** porque envuelve toda la aplicación y como queremos que los estilos globales queremos que sean para toda la aplicación, lo importamos en este archivo de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/nrTd9cN8/nextjs-11.jpg "Cargando estilos globales")
+
+Ahora, visitamos la pagina y vemos que se aplicaron los estilos globales:
+
+![Next.js 14](https://i.postimg.cc/RVm0dCyr/nextjs-12.jpg "Cargando estilos globales")
+
+También tenemos otra forma de cargar estilos además de los estilos globaless y los de Tailwind. Esta forma es a traves de los **CSS modules**. Para ello, creamos un archivo dentro de la carpeta **ui** llamado **home.module.css** donde escribimos el nombre del archivo .module para poder detectar que estamos queriendo utilizar un módulo.
+
+![Next.js 14](https://i.postimg.cc/mD8CFpV6/nextjs-13.jpg "Cargando estilos mediante CSS modules")
+
+Una vez creado el archivo, creamos una clase **shape** que representa un triangulo de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/g0VDSDkG/nextjs-14.jpg "Cargando estilos mediante CSS modules")
+
+Y finalmente, aplicamos este módulo en, por ejemplo, el archivo **page.tsx** de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/qR0tJfVC/nextjs-15.jpg "Cargando estilos mediante CSS modules")
+
+Guardamos los cambios y regresamos a la página para verificar que se encuentra aplicado el triangulo.
+
+![Next.js 14](https://i.postimg.cc/1zNqJcPJ/nextjs-16.jpg "Cargando estilos mediante CSS modules")
+
+Ahora, si inspeccionamos la página podemos observar que al aplicar un CSS module, la clase tiene un **hash**, o sea, crea un identificador único para esa clase. 
+
+![Next.js 14](https://i.postimg.cc/prBKbD0z/nextjs-17.jpg "Cargando estilos mediante CSS modules")
+
+### Importar y carganr fuentes
+
+Comenzamos creando en la carpeta **ui** un archivo llamado **fonts.ts**
+
+![Next.js 14](https://i.postimg.cc/44c34DC3/nextjs-18.jpg "Importando y cargando fuentes")
+
+Y en este archivo, podemos importar **Google Fonts** para luego crear, por ejemplo, una variable `Monserrat` correspondiente a este tipo de fuente y cargarle los estilos que yo desee como se muestra en la imagen a continuación.
+
+![Next.js 14](https://i.postimg.cc/T2J0KYW7/nextjs-19.jpg "Importando y cargando fuentes")
+
+Ahora, si la queremos utilizar, nos dirigimos al archivo **layout.tsx** que envuelve nuestra página y la aplicamos en el body de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/J7vC0xV4/nextjs-20.jpg "Importando y cargando fuentes")
+
+Por último, guardamos los cambios y vemos como se cambio la fuente en nuestra página. 
+
+![Next.js 14](https://i.postimg.cc/kGk0HJFt/nextjs-21.jpg "Importando y cargando fuentes")
+
+### Agregar más fuentes al proyecto
+
+Si queremos agregar más fuentes al proyecto, creamos otra variable, por ejemplo **lusitana** de la misma manera que para el caso de Montserrat:
+
+![Next.js 14](https://i.postimg.cc/tgtQ8L2m/nextjs-22.jpg "Importando y cargando más fuentes")
+
+Luego de esto, si la queremos aplicar en el texto de **Welcome to Acme.**, lo aplicamos en la etiqueta **strong** como en el caso anterior con la fuente Montserrat.
+
+![Next.js 14](https://i.postimg.cc/52k5m0Bx/nextjs-23.jpg "Importando y cargando más fuentes")
+
+Guardamos los cambios y vemos como ahora el titulo tiene aplicada la fuente **Lusitana**.
+
+![Next.js 14](https://i.postimg.cc/XYvcFFyH/nextjs-24.jpg "Importando y cargando más fuentes")
+
+### Imagenes
+
+Para añadir imagenes, nos dirigimos al archivo **page.tsx** donde se encuentra comentado para añadir una imagen.
+
+![Next.js 14](https://i.postimg.cc/VsF847gk/nextjs-25.jpg "Imagenes")
+
+Una vez situados alli, vamos a insertar la imagen **hero-desktop.png** a través de una etiqueta **img** como hacemos comunmente.
+
+![Next.js 14](https://i.postimg.cc/KvMpYjW3/nextjs-26.jpg "Imagenes")
+
+Guardamos los cambios y regresamos a nuestra página para verificar que la imagen se encuentra aplicada.
+
+![Next.js 14](https://i.postimg.cc/FKTVpkzR/nextjs-27.jpg "Imagenes")
+
+Pero observemos que la etiqueta **img** se encuentra subrayada de amarillo porque puede causar un problema de rendimiento como se indica a continuación. 
+
+![Next.js 14](https://i.postimg.cc/gkkwmt2x/nextjs-28.jpg "Imagenes")
+
+
+Para solucionar esto, se recomienda utilizar el componente **Image**. Para ello, importamos el componente y lo utilizamos en reemplazo de la etiqueta **img** de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/NjmXJJGL/nextjs-29.jpg "Imagenes")
+
+Guardamos los cambios y regresamos a la página y observamos que nos arroja un error en la compilación porque nos pide que el componente imagen debe tener necesariamente una propiedad **width**.
+
+![Next.js 14](https://i.postimg.cc/nc671bJ6/nextjs-30.jpg "Imagenes")
+
+Esta propiedad es necesaria para asegurarnos que es optima la imagen que se está cargando y dejar el espacio que se necesita configurando un alto y un ancho. De esta forma, el espacio que ocupa la imagen siempre va a estar ahi. Por lo tanto, configuramos el ancho y el alto de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/kGqxrLsT/nextjs-31.jpg "Imagenes")
+
+Guardamos los cambios y recargamos la página para verificar que la imagen haya sido insertada de manera corecta.
+
+![Next.js 14](https://i.postimg.cc/J0Ht2xVp/nextjs-32.jpg "Imagenes")
+
+A simple vista parece que ambas etiquetas bien configuradas obtienen el mismo resultado. 
+
+Pero analicemos en las herramientas de desarrollo cuando aplico la etiqueta **img**. Ingresamos a la sección **Network** y en la solapa **img** podemos ver la siguiente información:
+
+![Next.js 14](https://i.postimg.cc/wMJC1RYW/nextjs-33.jpg "Imagenes")
+
+El formato de la imagen es **PNG** y el tamaño es de 244B.
+
+Ahora, cuando aplico el componente **Image**. Ingresamos a la sección **Network** y en la solapa **img** podemos ver la siguiente información:
+
+![Next.js 14](https://i.postimg.cc/25HRMBDJ/nextjs-34.jpg "Imagenes")
+
+El formato de la imagen es **webp** y el tamaño se encuentra en **disk cache** < 244B por lo que utilizar el componente **Image** resulta más optimo.
+
+### Sistema de enrutado por archivos
+
+Supongamos que queremos crear la ruta http://localhost:3000/dashboard. Inicialmente, esta ruta no existe y por lo tanto, arroja un error 404 como se muestra a continuación:
+
+![Next.js 14](https://i.postimg.cc/dtggtSKq/nextjs-35.jpg "Enrutado por archivos")
+
+Por lo tanto, de acuerdo a la documentación, para crear la ruta http://localhost:3000/dashboard, debemos crear una carpeta dentro de **app** llamada **dashboard** y dentro de ella, un archivo llamado **page.tsx** 
+
+![Next.js 14](https://i.postimg.cc/J7jcf6zw/nextjs-36.jpg "Enrutado por archivos")
+
+Una vez creado el archivo, creamos la función que actua como componente como se muestra en la imagen a continuación.
+
+![Next.js 14](https://i.postimg.cc/QtdCfMCx/nextjs-37.jpg "Enrutado por archivos")
+
+Con esto, basta simplemente para crear la ruta http://localhost:3000/dashboard. Guardamos los cambios y verificamos que los cambios se hayan aplicado a nuestra página 
+
+![Next.js 14](https://i.postimg.cc/mr8XvdLN/nextjs-38.jpg "Enrutado por archivos")
+
+### Rutas anidadas
+
+Ahora, si queremos crear más rutas o rutas dentro de otras rutas. Por ejemplo, si queremos crear la ruta http://localhost:3000/dashboard/customers, inicialmente nos arroja error 404 porque no existe.
+
+Para solucionar esto, creamos dentro de la carpeta *dashboard* la carpeta *customers* y dentro de ella, el archivo **page.tsx** con el componente de la misma manera como lo definimos para el caso del dashboard.
+
+![Next.js 14](https://i.postimg.cc/wjc0J9rj/nextjs-39.jpg "Enrutado por archivos")
+
+
+Guardamos los cambios y verificamos que los cambios se hayan aplicado correctamente.
+
+![Next.js 14](https://i.postimg.cc/7PBZXzpF/nextjs-40.jpg "Enrutado por archivos")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- **** -->
@@ -163,7 +322,7 @@ Además, cuenta con un archivo `global.css` con los estilos que vamos a tener qu
 
 
 
-<!-- **winston** -->
+
 
 
 
