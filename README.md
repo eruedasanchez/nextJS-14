@@ -288,6 +288,55 @@ Guardamos los cambios y verificamos que los cambios se hayan aplicado correctame
 
 ![Next.js 14](https://i.postimg.cc/7PBZXzpF/nextjs-40.jpg "Enrutado por archivos")
 
+### Layouts que envuelven secciones especificas de nuestras rutas
+
+Anteriormente, vimos que el archivo **layout.tsx** envuelve a toda nuestra aplicación. Ahora bien, podemos tener layouts que envuelvan solamente parte de nuestras rutas.
+
+Supongamos, por ejemplo, que quiero tener un layout que envuelva a los componentes de **dashboard**. Entonces, dentro de la carpeta *dashboard*, creo el archivo **layout.tsx** y escribo el código que se muestra a continuación:
+
+![Next.js 14](https://i.postimg.cc/RZmTTPvs/nextjs-41.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
+
+- Si ingresamos a la seccion de **customers**, observamos que el *layout* se encuentra envolviendo este componente.
+
+![Next.js 14](https://i.postimg.cc/cLXYgzSf/nextjs-42.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
+
+- Si ingresamos a la seccion de **invoices**, observamos que el *layout* se encuentra envolviendo este componente.
+
+![Next.js 14](https://i.postimg.cc/fbydxvzp/nextjs-43.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
+
+Si nos dirigimos al directorio raiz (http://localhost:3000/) observamos que este layout no lo está envolviendo porque solo envuelve a los componentes que contiene **dashboard** como mencionamos anteriormente.
+
+![Next.js 14](https://i.postimg.cc/G2g0NdGq/nextjs-44.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
+
+### Navegación: Componente Link
+
+Ahora, cada vez que navego por la página, es decir, voy desde *invoices* a *customers* o viceversa por ejemplo se recarga toda la página y esto produce un rendimiento negativo para el usuario y además creamos el componente *SideNav* en el layout para evitar tenerlo que cargar cada vez estoy navegando por el dashboard. Además, en el caso de tener un estado, se lo pierde porque se vuelve a recargar la página.
+
+Por lo tanto, queremos que haya una navegación fluida como si fuera una **Single Page Application**, es decir, que reutilice todos los recursos posibles, que renderice solo los componentes que cambian y actualizar la URL sin necesidad de recargar toda la página.
+
+Por lo tanto, para hacer este tipo de navegaciones podemos usar el componente de *NextJs* llamado **Link**.
+
+Para utilizarlo, abrimos el archivo **nav-links.tsx** y analizamos su contendido.
+
+![Next.js 14](https://i.postimg.cc/T1n31s6X/nextjs-45.jpg "Navegación: Componente Link")
+
+- En primer lugar, se importan los iconos correspondientes a cada sección (Home, Customers, Invoices).
+
+- Luego, se encuentra el arreglo **links** que contiene justamente el nombre, la ruta y el icono de cada enlace.
+
+- Finalmente, la función **NavLinks** realiza un mapeo para cada link agregando una etiqueta `<a>` con el nombre y el icono del link
+
+Observemos que cada link está envuelto por una etiqueta anchor `<a>` que recarga la página cada vez navegamos y no es lo que queremos, vamos a reemplazar la etiqueta `<a>` por el componente `<link>` de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/Pfpq8xjK/nextjs-46.jpg "Navegación: Componente Link")
+
+De esta manera, se logra una carga más rápida de la página porque solo carga lo necesario.
+
+### Hooks de Next Js
+
+Una vez terminada la navegación, podemos navegar tranquilamente entre las secciones pero cuando cambiamos, por ejemplo, de invoices a customers no se detalla que estamos en esa sección a pesar de que la ruta se actualiza y el contenido también.
+
+
 
 
 
