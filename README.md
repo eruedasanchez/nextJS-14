@@ -350,6 +350,49 @@ De este modo, cada vez que naveguemos entre secciones, se va a colocar un fondo 
 
 ### Base de datos: Postgres 
 
+Una vez loggeados con nuestra cuenta de Vercel, creamos una nueva DB con el nombre **customer-invoices** por ejemplo. Luego, copiamos las siguientes variables de entorno:
+
+![Next.js 14](https://i.postimg.cc/TYLYvbZ6/nextjs-49.jpg "Base de datos: Postgres")
+
+Una vez copiadas las variables de entorno, nos dirigimos al archivo **.env.example**, le modificamos el nombre a **.env** y voy a copiar todas las variables de entorno de la base de datos que cree.
+
+Con esto, ya estamos en condiciones de poder conectarnos a la base de datos.
+
+Ahora, se pueden usar varios clientes de **postgresSQL** pero lo ideal es utilizar el de *Vercel* porque como *Vercel* ya sabe cuales son las variables de entorno, ni siquiera hay que crear la conexion.
+
+Entonces, instalamos la dependencia para trabajar con la base de datos de Postgres en la carpeta de nuestro proyecto ejecutando el comando:
+
+```bash
+$ npm install @vercel/postgres
+```
+
+Ahora, el archivo **seed.js** dentro de la carpeta scripts, funciona como una semilla para crear datos en mi DB. Luego, nos dirigimos al archivo *package.json* y en la seccion de scripts creamos el siguiente comando:
+
+![Next.js 14](https://i.postimg.cc/437zKP2x/nextjs-50.jpg "Base de datos: Postgres")
+
+Con esto, va a importar (realizar un require, por eso `-r`) el modulo *dotenv/config* y ejecuta el script *seed.js* y asi nos aseguramos que está leyendo la variable de entorno.
+
+Luego, ejecutamos el comando:
+
+```bash
+$ npm run seed
+```
+
+Obteniendo el siguiente resultado por consola:
+
+![Next.js 14](https://i.postimg.cc/15gnC56Y/nextjs-51.jpg "Base de datos: Postgres")
+
+Finalmente, volvemos a nuestra base de datos y vemos como se crearon exitosamente todas las tablas.
+
+![Next.js 14](https://i.postimg.cc/DzFLWkDf/nextjs-52.jpg "Base de datos: Postgres")
+
+
+
+
+
+
+
+
 
 
 
