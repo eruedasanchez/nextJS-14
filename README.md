@@ -336,6 +336,20 @@ De esta manera, se logra una carga más rápida de la página porque solo carga 
 
 Una vez terminada la navegación, podemos navegar tranquilamente entre las secciones pero cuando cambiamos, por ejemplo, de invoices a customers no se detalla que estamos en esa sección a pesar de que la ruta se actualiza y el contenido también.
 
+Entonces, vamos a mejorar la experiencia para el usuario y dependiendo de la ruta en la que estemos, vamos a cambiar los estilos para que se vea cuál está activo.
+
+Para conseguir esto, *NextJs* cuenta con varios **hooks** que permiten de varias formas acceder a información de las rutas, de los path's, del router para que actualizarlo o cambiarlo.
+
+En este caso, vamos a utilizar el hook **usePathName()** para leer el path en el que nos encontramos actualmente. Pero, por defecto, este hook solo se utiliza del lado del servidor por lo que si queremos tambien que se renderize del lado del cliente tenemos que agregar la directiva `use client` de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/zBmfW82b/nextjs-47.jpg "Hooks de Next Js")
+
+De este modo, cada vez que naveguemos entre secciones, se va a colocar un fondo celeste y letras azul sobre la sección que estemos navegando actualmente.
+
+![Next.js 14](https://i.postimg.cc/qMQNNtfz/nextjs-48.jpg "Hooks de Next Js")
+
+### Base de datos: Postgres 
+
 
 
 
