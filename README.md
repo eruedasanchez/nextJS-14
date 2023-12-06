@@ -422,6 +422,31 @@ Ahora, sabemos que el fetch de la función *fetchRevenue* demora 2 segundos y el
 
 Supongamos ahora, que la función *fetchRevenue* demora artificalmente 3 segundos (descomentamos la linea 22 en el archivo *data.ts*). Ahora, al recargar la página, demora 3 segundos, lo que empeora el rendimiento de la página dado que hasta no cargar todos estos datos, no puede continuar con el renderizado de la página.
 
+### Loading
+
+Para mejorar la experiencia del usuario y solucionar el problema, vamos a utilizar lo que se conoce como **Streaming de los datos**. Es decir, mostrar todo aquello que se encuentre disponible y lo que no está disponible, mostrar un **esqueleto**. A esto se lo conoce como **suspense**.
+
+Ahora, el objetivo es que se puede renderizar todo sin necesidad de esperar al gráfico, es decir, a que se realice el *fetchRevenue*. Para lograr esto, tenemos dos opciones:
+
+- Crear un componente **Loading**, que coloque la leyendo *Cargando* mientras espera que se realice el fetch creando un archivo **** y colocando el siguiente código:
+
+![Next.js 14](https://i.postimg.cc/rFwc8FDk/nextjs-57.jpg "Loading")
+
+De esta manera, NextJs reconoce al archivo **loading.tsx** (no cambiar el nombre) para que se muestre el contenido dentro de él mientras espera que se cargue el contenido de los demás componentes.
+
+Sin embargo, esto es muy sencillo y podríamos llevarlo a otro nivel cargando, por ejemplo, el componente **** que se encuentra en el componente **skeletons.tsx** 
+
+Ahora, al recargar la página, obtenemos el siguiente resultado:
+
+![Next.js 14](https://i.postimg.cc/mDsh3Fg1/nextjs-58.jpg "Loading")
+
+Sin embargo, podemos observar que, unicamente por la demora en cargar los gráficos (*fetchRevenue*) estamos viendo todo el esqueleto de la página y esto lo queremos mejorar mediante el **Straming de Datos**.
+
+### Continuando con el Straming
+
+
+
+
 
 
 
