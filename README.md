@@ -444,6 +444,26 @@ Sin embargo, podemos observar que, unicamente por la demora en cargar los gráfi
 
 ### Continuando con el Straming
 
+Para realizar esta optimización, en el archivo **page.tsx**, envolvemos el componente (*RevenueChart*) que genera los gráficos y que genera conflictos en otro componente de React llamado **Suspense**. Este componente es asíncrono, lo vamos a esperar y le colocamos un *fallback*. Es decir, mientras el Revenue se este cargando, vamos a mostrar el *fallback* y una vez que se haya cargado, se renderizará el contenido del componente *Revenue*.
+
+![Next.js 14](https://i.postimg.cc/DZx4Pdpp/nextjs-59.jpg "Continuando con el Straming")
+
+Luego, quitamos la instrucción del fetch del *revenue* (linea 8) y nos dirigimos al archivo *revenue-chart.tsx* que contiene al componente **Revenue Chart**. Y en lugar de que le lleguen las *props*, vamos a hacer que el *Revenue* lo cargue de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/SKJKpFgd/nextjs-60.jpg "Continuando con el Straming")
+
+Ahora, en el *fallback* del componente *Suspense* podemos cargar el esqueleto correspondiente al componente para mejorar aún más la experiencia.
+
+![Next.js 14](https://i.postimg.cc/kM1qqhth/nextjs-61.jpg "Continuando con el Straming")
+
+Finalmente, al recargar la página obtenemos el esqueleto correspondiente al componente del gráfico pero podemos observar como se renderiza el componente que contiene la factura de los últimos clientes .
+
+![Next.js 14](https://i.postimg.cc/brB7krXS/nextjs-62.jpg "Continuando con el Straming")
+
+
+
+
+
 
 
 
