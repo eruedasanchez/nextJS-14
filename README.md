@@ -386,6 +386,22 @@ Finalmente, volvemos a nuestra base de datos y vemos como se crearon exitosament
 
 ![Next.js 14](https://i.postimg.cc/DzFLWkDf/nextjs-52.jpg "Base de datos: Postgres")
 
+### Fetching de datos
+
+Una vez creada nuestra DB, vamos a proceder a realizar el fetching de datos.
+
+En este caso, NextJs va a realizar el renderizado pero en el servidor para optimizar recursos y el cliente unicamente va a recibir la respuesta y renderizar lo que el contenido correspondiente.
+
+Para ello, vamos a realizar el fetching de datos en el archivo **page.tsx** dentro de la carpeta *dashboard*.
+
+Por defecto, los componentes (incluyendo a nuestra página **page.tsx**) se renderizan en el servidor. Por lo tanto, a esto lo lllamamos **React Server Component**. Una ventaja de estos componentes es que puede ser asíncrono. Por lo tanto, podríamos hacer un *await fetch* para poder obtener la información de la DB o de una API externa.
+
+Pero como queremos utilizar nuestra DB, en el archivo **data.ts** dentro de la carpeta *lib* en el directorio *app*, nos encontramos con varias funciones que nos permiten realizan el fetch para obtener los datos de las tablas definidas en nuestra DB. Algunas de ellas son  *fetchRevenue()*, *fetchLatestInvoices()*, *fetchCustomers()*. Entonces, en el archivo **page.tsx**, aplicamos la función *fetchRevenue()* de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/kGBtpTjH/nextjs-53.jpg "Fetching de datos")
+
+Observemos también como este archivo, al ser un componente de servidor, solo *consologea* el resultado del fetch en la terminal pero no en la consola del cliente, es decir, si inspeccionamos la pagina *dashboard*, vamos a observar que la consola no se muestra el resultado de *fetch*.
+
 
 
 
