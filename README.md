@@ -402,6 +402,32 @@ Pero como queremos utilizar nuestra DB, en el archivo **data.ts** dentro de la c
 
 Observemos también como este archivo, al ser un componente de servidor, solo *consologea* el resultado del fetch en la terminal pero no en la consola del cliente, es decir, si inspeccionamos la pagina *dashboard*, vamos a observar que la consola no se muestra el resultado de *fetch*.
 
+![Next.js 14](https://i.postimg.cc/WbLP1Xr6/nextjs-54.jpg "Fetching de datos")
+
+### Renderizar datos en el dashboard
+
+Ahora, vamos a renderizar los datos en el dashboard. Para ello, NextJs nos provee un esqueleto para completar que se muestra a continuación.
+
+![Next.js 14](https://i.postimg.cc/XNrXBjJK/nextjs-55.jpg "Renderizar datos en el dashboard")
+
+Por lo tanto, comenzamos pasando el gráfico (descomentando la linea 21) del Revenue para mostrar el gráfico dado que el componente **RevenueChart** muestra el gráfico (descomentar los comentarios en el archivo **revenue-chart.tsx**).
+
+Luego, voy a querer mostrar los datos correspondientes a *latestInvoices* (descomentando la linea 22) de LatestInvoices para las facturas de los últimos compradores dado que el componente **LatestInvoices** muestra las facturas de los últimos compradores (descomentar los comentarios en el archivo **latest-invoices.tsx**).
+
+Por lo tanto, el archivo *page.tsx* queda de la siguiente manera dejando de manera opcional poder obtener más información.
+
+![Next.js 14](https://i.postimg.cc/7ZT2Gj16/nextjs-56.jpg "Renderizar datos en el dashboard")
+
+Ahora, sabemos que el fetch de la función *fetchRevenue* demora 2 segundos y el fetch de la función *fetchLatestInvoices* demora 1 segundo. Por lo tanto, se demorará al menos 3 segundos en renderizar la página porque al utilizar **await** se espera que se cumpla un pedido para poder avanzar con el siguiente. 
+
+Supongamos ahora, que la función *fetchRevenue* demora artificalmente 3 segundos (descomentamos la linea 22 en el archivo *data.ts*). Ahora, al recargar la página, demora 3 segundos, lo que empeora el rendimiento de la página dado que hasta no cargar todos estos datos, no puede continuar con el renderizado de la página.
+
+
+
+
+
+
+
 
 
 
