@@ -25,5 +25,10 @@ export async function createInvoice(formData:FormData) {
         status: formData.get('status'),
     }) 
 
-    // console.log(rawFormData);
+    // transformamos para evitar errores de redondeo
+    const amountInCnets = amount * 100;
+
+    // creamos la fecha actual 
+    const [date] = new Date().toISOString().split('T'); // .split('T') -> quita el timestamp
+
 }

@@ -628,7 +628,11 @@ Luego, vamos a crear el esquema *CreateInvoiceSchema* que valide el tipo de los 
 
 Ahora, validamos la información que almacenamos en la variable *rawFormData* donde vamos a extraer el *customerId*, *amount* y *status*.
 
-![Next.js 14](https://i.postimg.cc/ZRmDf0V0/nextjs-87.jpg "Validaciones")
+![Next.js 14](https://i.postimg.cc/tJbQxp1G/nextjs-87.jpg "Validaciones")
+
+### Crear la fecha
+
+Ahora, vamos a crear la fecha y elegimos el metodo *ISOString* porque el formato que necesita es, por ejemplo, 2023-11-25 y obtenemos solo la componente *date* porque la *hora* no me interesa.
 
 
 
