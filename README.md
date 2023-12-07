@@ -544,7 +544,23 @@ $ npm install use-debounce
 
 Luego, importamos la dependencia **use-debounce** en el archivo *search.tsx* y envolvemos la función *handleSearch* que es la realiza la búsqueda y le colocamos el intervalo en milisegundos que tiene que esperar entre pulsación de teclas (en este caso, colocamos 500).
 
-![Next.js 14](https://i.postimg.cc/wBKdnY2R/nextjs-74.jpg "Debounce")
+![Next.js 14](https://i.postimg.cc/vB5qDDJb/nextjs-74.jpg "Debounce")
+
+### Reiniciar paginación
+
+Ahora, vamos a colocar la paginación. Es decir, cada vez que realicemos una búsqueda, queremos reiniciar la paginación. Por lo tanto, cada vez que realizamos una búsqueda nueva, vamos a setear el parametro *page* en 1 de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/TY0q3BPy/nextjs-75.jpg "Reiniciar paginación")
+
+Ahora, si ingresa en el input *delba*, se agrega el parametro *page* a la URL.
+
+![Next.js 14](https://i.postimg.cc/y8twtd2B/nextjs-76.jpg "Reiniciar paginación")
+
+### Crear paginación
+
+Ahora, para crear la paginación, 
+
+
 
 
  
