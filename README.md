@@ -530,6 +530,25 @@ Ahora, si recargamos la página podemos observar que a medida que vamos actualiz
 
 ![Next.js 14](https://i.postimg.cc/wBKdnY2R/nextjs-73.jpg "Mostrando la información")
 
+### Debounce
+
+Ahora, queremos evitar que cada vez que se pulse una tecla se recargue y renderize la página buscando los resultados. Por ejemplo, si ingresamos en el input *avengers*, no queremos que la página se renderice cada vez que pulsamos la tecla *a*, la tecla *v*, la tecla *e*, etc. 
+
+Por lo tanto, la idea de hacer un **debounce** consiste en, cada vez que se pulsa una tecla, esperar unos pocos milisegundos por ejemplo que chequea que si pasados los milisegundos determinados se pulsa una tecla. Si no se pulsa una tecla, disparamos la acción o devolvemos el resultado. En caso de pulsar una tecla, reiniciar el contador y esperar si se vuelve o no a pulsar una tecla. De esta manera, evitamos mostrar los resultados cada vez que se pulsa una tecla sino esperar a que se termine de teclear.
+
+Para realizar esto, comenzamos instalando la dependencia *debounce* ejecutando el siguiente comando en el directorio de nuestro proyecto:
+
+```bash
+$ npm install use-debounce
+```
+
+Luego, importamos la dependencia **use-debounce** en el archivo *search.tsx* y envolvemos la función *handleSearch* que es la realiza la búsqueda y le colocamos el intervalo en milisegundos que tiene que esperar entre pulsación de teclas (en este caso, colocamos 500).
+
+![Next.js 14](https://i.postimg.cc/wBKdnY2R/nextjs-74.jpg "Debounce")
+
+
+ 
+
 
 
 
