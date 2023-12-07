@@ -498,6 +498,44 @@ Por lo tanto, si escribimos en el input *hola*, entonces el parametro search va 
 
 ![Next.js 14](https://i.postimg.cc/zfqk4SDT/nextjs-67.jpg "Sincronizar el estado inicial")
 
+### Mostrando la información
+
+Ahora, resta ver que, no solo cuando modifico el input se tiene que actualizar la URL, sino que tambien se deben mostrar los resultados. Para ello, nos dirigimos al archivo **page.tsx** dentro de la carpeta *invoices* en el directorio *app* y descomentamos el componente *Suspense* que contiene al componente *Table* que muestra los resultados.
+
+![Next.js 14](https://i.postimg.cc/Rhj7d2ZL/nextjs-68.jpg "Mostrando la información")
+
+Hecho esto, observamos que tenemos los siguientes problemas:
+
+- No se encuentra la variable *query*. Por lo tanto, la definimos inicialmente vacia **''**.
+
+- No se encuentra la variable *currentPage*. Por lo tanto, la definimos inicialmente con el valor **1**.
+
+![Next.js 14](https://i.postimg.cc/C5XjL9yf/nextjs-69.jpg "Mostrando la información")
+
+Y si recargamos la página podemos ver ahora, como se muestra la tabla de los clientes.
+
+![Next.js 14](https://i.postimg.cc/mgzH8Tzx/nextjs-70.jpg "Mostrando la información")
+
+Pero la información de la tabla debería actualizarse cada vez que modifico el input. El componente *Table* (ubicado en el archivo *table.tsx* dentro de la carpeta *invoices* en el directorio *ui*) cada vez que recibe la query, ejecuta la función *fetchFilteredInvoices(query, currentPage)*, que filtra las facturas de acuerdo a la *query* que le pasamos y la página actual.
+
+![Next.js 14](https://i.postimg.cc/GhhLczdq/nextjs-71.jpg "Mostrando la información")
+
+Por lo tanto, debemos pasar la información correcta. Las páginas de NextJs reciben la información de los ***SearchParams* y por lo tanto, los podemos pasar por *props* de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/Z59P98Jh/nextjs-72.jpg "Mostrando la información")
+
+Es decir, pasamos por *props* que va a ser un objeto que va a contener los campos *query* (seteado en el input que se escriba o vacio en caso de que no haya nada escrito) y *page* (que va a mostrar la página actual o 1 si el parametro no existe).
+
+Ahora, si recargamos la página podemos observar que a medida que vamos actualizando el input, se van mostrando los distintos resultados.
+
+![Next.js 14](https://i.postimg.cc/wBKdnY2R/nextjs-73.jpg "Mostrando la información")
+
+
+
+
+
+
+
 
 
 
