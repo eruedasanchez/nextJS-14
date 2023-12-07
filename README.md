@@ -490,6 +490,14 @@ De este modo, con la función **replace**, logramos concatenar la URL (http://lo
 
 ### Sincronizar el estado inicial
 
+Ahora, debemos sincronizar el estado inicial. Esto lo logramos haciendo que el valor por defecto del input sea el colocado en la *query* de la siguiente manera:  
+
+![Next.js 14](https://i.postimg.cc/SxPVwp9p/nextjs-66.jpg "Sincronizar el estado inicial")
+
+Por lo tanto, si escribimos en el input *hola*, entonces el parametro search va a estar igualado a hola pero cuando recarguemos la página no lo vamos a perder sino que ya va a quedar almacenado. Incluso, si abrimos otra ventana y ejecutamos http://localhost:3000/dashboard/invoices, también va a quedar guardado el parametro *search* con el valor *hola*.   
+
+![Next.js 14](https://i.postimg.cc/zfqk4SDT/nextjs-67.jpg "Sincronizar el estado inicial")
+
 
 
 
