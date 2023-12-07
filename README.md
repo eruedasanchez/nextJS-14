@@ -558,7 +558,28 @@ Ahora, si ingresa en el input *delba*, se agrega el parametro *page* a la URL.
 
 ### Crear paginación
 
-Ahora, para crear la paginación, 
+Ahora, para añadir la paginación, vamos a regresar al archivo *page.tsx* dentro de la carpeta invoices en el directorio *app*. En este archivo, tenemos comentado el componente que realiza la paginaación **Pagination**. Luego, descomentamos este componente y observamos que pasa por props una variable llamada *totalPages* que determina cuantas páginas en total tiene la tabla. Este dato lo podemos obtener de la DB realizando un *fetch* a la tabla de facturas para saber cuanatas páginas tenemos. Para ello, utilizamos la función *fetchInvoicesPages(query)* dependiendo de la *query*.
+
+![Next.js 14](https://i.postimg.cc/fyVkvCFD/nextjs-77.jpg "Crear paginación")
+
+Ahora, nos dirigimos al archivo *pagination.tsx* que contiene el componente **Pagination** y descomentamos lo que se encuentra comentado y obtenemos los siguientes errores:
+
+![Next.js 14](https://i.postimg.cc/8PM29WLH/nextjs-78.jpg "Crear paginación")
+
+- *createPageURL* se encarga de que cada flecha se diriga a la página correcta
+
+- *currentPage* que lo vamos a recuperar utilizando *usePathname* para leer y recuperar del pathname y *useSearchParams* para recuperar los params
+
+- *allPages* determina todas las páginas
+
+Ahora, recargando la página podemos ver que se visualiza la paginación pero todavia no funciona, es decir, al hacer click sobre un número no se cambia de página.
+
+![Next.js 14](https://i.postimg.cc/XqfrDL35/nextjs-79.jpg "Crear paginación")
+
+
+
+
+
 
 
 
