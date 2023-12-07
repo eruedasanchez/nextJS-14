@@ -614,6 +614,30 @@ Luego, podriamos obtener toda la información del formulario de la siguiente man
 
 ![Next.js 14](https://i.postimg.cc/W3MRYG2R/nextjs-85.jpg "Server Actions")
 
+### Validaciones
+
+Para realizar las validaciones vamos a utilizar la libreria **zod**. Para instalarla, vamos a ejecutar el siguiente comando:
+
+```bash
+$ npm install zod
+```
+
+Luego, vamos a crear el esquema *CreateInvoiceSchema* que valide el tipo de los datos cada vez que se crea un objeto y el subesquema *CreateInvoiceFormSchema* que valida el tipo de los datos ingresados en el formulario pero como no se ingresa id y la fecha, no lo validamos.
+
+![Next.js 14](https://i.postimg.cc/ZRmDf0V0/nextjs-86.jpg "Validaciones")
+
+Ahora, validamos la información que almacenamos en la variable *rawFormData* donde vamos a extraer el *customerId*, *amount* y *status*.
+
+![Next.js 14](https://i.postimg.cc/ZRmDf0V0/nextjs-87.jpg "Validaciones")
+
+
+
+
+
+
+
+
+
 
 
 
