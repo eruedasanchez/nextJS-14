@@ -588,6 +588,34 @@ Recargamos la página y efectivamente se encuentra realizada la paginación.
 
 ![Next.js 14](https://i.postimg.cc/KcR9qvjQ/nextjs-81.jpg "Dandole vida a la paginación")
 
+### Server Actions
+
+Vamos a utilizar los Server Actions en un formulario para generar facturas.
+
+Un Server Action permite ejecutar código asíncrono directamente en el servidor. Y esto elimina la necesidad de crear API's cada vez que necesite mutar, crear o actualizar datos por ejemplo. Por lo tanto, en lugar de crear 3 endpoints para cada una de las acciones, los Server Actions evitan esto.
+
+En nuestro ejemplo, comenzamos dirigiendonos al archivo *page.tsx* dentro de la carpeta *Invoices*. Allí tenemos el componente *CreateInvoice* correspondiente al boton Create Invoice. Si lo clickeamos, nos redirige a la página http://localhost:3000/dashboard/invoices/create pero como todavia no se encuentra implementada nos arroja un erroja 404.
+
+Por lo tanto, vamos a crear esta página. Entonces, dentro de la carpeta *create*, creamos el archivo *page.tsx* y escribimos el siguiente componente:
+
+![Next.js 14](https://i.postimg.cc/WpyNDnh8/nextjs-82.jpg "Server Actions")
+
+La página ha sido creada exitosamente pero la página no hace absolutamente nada porque el formulario no está realizando ninguna acción. Entonces, debemos solucionar el formulario que se encuentra en el archivo *create-form.tsx* en la carpeta *invoices* dentro del directorio *ui*. Para ello, vamos a crear un archivo llamado *actions.ts* dentro de la carpeta *lib* que contiene toda lógica sobre la mutación (crear, borrar, actualizar datos por ejemplo) de nuestra página. Este archivo contiene el siguiente código:
+
+![Next.js 14](https://i.postimg.cc/nVwQ2BwS/nextjs-83.jpg "Server Actions")
+
+- *createInvoice* es una acción y lo utilizamos en el el archivo *create-form.tsx* en el formulario
+
+Con esto, podemos ver como se genera efectivamente la factura y se muestra por consola.
+
+![Next.js 14](https://i.postimg.cc/rwp4NgqH/nextjs-84.jpg "Server Actions")
+
+Luego, podriamos obtener toda la información del formulario de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/W3MRYG2R/nextjs-85.jpg "Server Actions")
+
+
+
 
 
 
