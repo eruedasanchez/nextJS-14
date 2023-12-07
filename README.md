@@ -576,6 +576,20 @@ Ahora, recargando la página podemos ver que se visualiza la paginación pero to
 
 ![Next.js 14](https://i.postimg.cc/XqfrDL35/nextjs-79.jpg "Crear paginación")
 
+### Dandole vida a la paginación
+
+Anterirormente, logramos que la paginación funcione, es decir, si paso por el parametro *page* el número 2, el componente **Pagination** va a marcar como *currentPage* (colocarle fondo azul y letras de color blanco) a la página 2. Pero el problema que tenemos que resolver, es que al clicklear un número de página, se traslade a ella.
+
+Para ello, seteamos el parametro *page* de la URL con el valor de la página a la que me quiero dirigir y finalmente, devolver la URL a la que me quiero dirigir. En nuestro, sería http://localhost:3000/dashboard/invoices (lo recuperamos usando *Pathname*) y los parametros actualizados (*params.toString()*) de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/c1vMcgj4/nextjs-80.jpg "Dandole vida a la paginación")
+
+Recargamos la página y efectivamente se encuentra realizada la paginación.
+
+![Next.js 14](https://i.postimg.cc/KcR9qvjQ/nextjs-81.jpg "Dandole vida a la paginación")
+
+
+
 
 
 
