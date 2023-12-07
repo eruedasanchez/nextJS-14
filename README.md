@@ -460,6 +460,41 @@ Finalmente, al recargar la página obtenemos el esqueleto correspondiente al com
 
 ![Next.js 14](https://i.postimg.cc/brB7krXS/nextjs-62.jpg "Continuando con el Straming")
 
+### Trabajando con Invoices Page
+
+Ahora, vamos a trabajar con el contenido de la página de Invoices Page. 
+
+### Capturando el input del usuario
+
+Comenzamos capturando el input que va colocando el usuario mediante la función *handleSearch* en el archivo **search.tsx** de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/JhvPkgdz/nextjs-63.jpg "Capturando el input del usuario")
+
+Ahora, vamos a necesitar crear una URL. Para ello, vamos a import el hook **useSearchParams** que nos va a permitir recuperar el query o el parametro que ingresemos. Por ejemplo, en la ruta http://localhost:3000/dashboard/invoices?query=hola, el query o parametro que se ejecuta es query y el valor que se recupera el hola. 
+
+Por lo tanto, cada vez que el usuario modifica el input, vamos a crear los *params* con lo que se haya recuperado con el hook *useSearchParams*. Luego, si el usuario está modificando el usuario, quiero crear o *setear* un parametro *search* donde se inserte el término o *term* que se este ingresando y en caso de que el input este vacio, borrar el parametro search de la URL.
+
+Entonces, el código nos queda de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/4xm87Tbj/nextjs-64.jpg "Capturando el input del usuario")
+
+Tambien queremos actualizar la URL. Para ello, si ejecutamos la función *params.toString()* observamos que si tenemos la ruta http://localhost:3000/dashboard/invoices y colocamos en el input **hola** por ejemplo, al ejecutar obtenemos *params.toString()* 'search=hola'.
+
+### Actualizar la URL
+
+Para actualizar la URL, vamos a utilizar los hooks *usePathname*, *useRouter*. Una vez que tengamos todos los params, reemplazamos la URL de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/KvtG8gpw/nextjs-65.jpg "Capturando el input del usuario")
+
+De este modo, con la función **replace**, logramos concatenar la URL (http://localhost:3000/dashboard/invoices) con el parametro search ingresado por input. Es decir, cada vez que sea actualiza el input, se modifica el valor de *search*.
+
+### Sincronizar el estado inicial
+
+
+
+
+
+
 
 
 
