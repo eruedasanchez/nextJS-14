@@ -648,6 +648,28 @@ Una vez hecho esto, creamos una factura para el cliente de la siguiente manera:
 
 ### Evitar la caché y redireccionar con NextJs
 
+Sin embargo, si vemos ahora la tabla con el historial de facturas, *Emmil* no aparece.
+
+![Next.js 14](https://i.postimg.cc/3rLXpqvP/nextjs-91.jpg "Llamar a la base de datos e implementar información")
+
+Pero si ingresamos en el input su nombre si figura la factura creada.
+
+![Next.js 14](https://i.postimg.cc/nVQmjLnQ/nextjs-92.jpg "Llamar a la base de datos e implementar información")
+
+Esto significa que sigue mostrando los datos antiguos porque están cacheados. Para dejar de cachear los datos, tenemos que indicar que rutas hay que revalidar luego de ejecutar la función de *sql*, es decir, que rutas van a tener datos y por lo tanto, vamos a querer que refresque esos datos. Esto lo hacemos con el método *revalidatePath* y pasamos por parametro la ruta a revalidar. Y por último, redireccionamos al usuario a la misma ruta utilizando el método *redirect* y pasamos por parametro la ruta a redireccionar.
+
+![Next.js 14](https://i.postimg.cc/8zFdHbSt/nextjs-93.jpg "Llamar a la base de datos e implementar información")
+
+Ahora, creamos una nueva factura para el cliente *Steph Diez*
+
+![Next.js 14](https://i.postimg.cc/VLtLWShX/nextjs-94.jpg "Llamar a la base de datos e implementar información")
+
+Luego, una vez clickeado el boton de *Create invoice* nos redirecciona a http://localhost:3000/dashboard/invoices y podemos observar que ahora si se encuentra actualizada la tabla de facturación a clientes.
+
+![Next.js 14](https://i.postimg.cc/L8XS0nCy/nextjs-95.jpg "Llamar a la base de datos e implementar información")
+
+
+
 
 
 
