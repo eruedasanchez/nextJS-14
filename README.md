@@ -25,6 +25,13 @@
 4. [Analizando carpetas](#analizando-carpetas)
 5. [Cargando los estilos](#cargando-los-estilos)
 6. [Importar y cargar fuentes](#importar-y-cargar-fuentes)
+7. [Agregar más fuentes al proyecto](#agregar-más-fuentes-al-proyecto)
+8. [Imágenes](#imágenes)
+
+
+
+
+
 
 
 <!-- 5. [](#) -->
@@ -191,7 +198,7 @@ Ahora, si inspeccionamos la página podemos observar que al aplicar un CSS modul
 
 ### Importar y cargar fuentes
 
-Creamos dentro de la carpeta *ui* un archivo llamado *fonts.ts*
+Creamos dentro de la carpeta *ui* un archivo llamado `fonts.ts`
 
 ![Next.js 14](https://i.postimg.cc/44c34DC3/nextjs-18.jpg "Importando y cargando fuentes")
 
@@ -199,7 +206,7 @@ Y en este archivo, podemos importar **Google Fonts** para luego crear, por ejemp
 
 ![Next.js 14](https://i.postimg.cc/T2J0KYW7/nextjs-19.jpg "Importando y cargando fuentes")
 
-Ahora, si la queremos utilizar, nos dirigimos al archivo **layout.tsx** que envuelve nuestra página y la aplicamos en el body de la siguiente manera:
+Si la queremos utilizar, nos dirigimos al archivo `layout.tsx` que envuelve nuestra página y la aplicamos en el body de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/J7vC0xV4/nextjs-20.jpg "Importando y cargando fuentes")
 
@@ -207,13 +214,13 @@ Por último, guardamos los cambios y vemos como se cambio la fuente en nuestra p
 
 ![Next.js 14](https://i.postimg.cc/kGk0HJFt/nextjs-21.jpg "Importando y cargando fuentes")
 
-### Agregar mas fuentes al proyecto
+### Agregar más fuentes al proyecto
 
 Si queremos agregar más fuentes al proyecto, creamos otra variable, por ejemplo **lusitana** de la misma manera que para el caso de Montserrat:
 
 ![Next.js 14](https://i.postimg.cc/tgtQ8L2m/nextjs-22.jpg "Importando y cargando más fuentes")
 
-Luego de esto, si la queremos aplicar en el texto de **Welcome to Acme.**, lo aplicamos en la etiqueta **strong** como en el caso anterior con la fuente Montserrat.
+Luego, si la queremos aplicar en el texto de *Welcome to Acme.*, lo aplicamos en la etiqueta *strong* como en el caso anterior.
 
 ![Next.js 14](https://i.postimg.cc/52k5m0Bx/nextjs-23.jpg "Importando y cargando más fuentes")
 
@@ -221,17 +228,17 @@ Guardamos los cambios y vemos como ahora el titulo tiene aplicada la fuente **Lu
 
 ![Next.js 14](https://i.postimg.cc/XYvcFFyH/nextjs-24.jpg "Importando y cargando más fuentes")
 
-### Imagenes
+### Imágenes
 
-Para añadir imagenes, nos dirigimos al archivo **page.tsx** donde se encuentra comentado para añadir una imagen.
+Para añadir imagenes, nos dirigimos al archivo `page.tsx` a la sección del código donde se encuentra comentado para añadir una imagen.
 
 ![Next.js 14](https://i.postimg.cc/VsF847gk/nextjs-25.jpg "Imagenes")
 
-Una vez situados alli, vamos a insertar la imagen **hero-desktop.png** a través de una etiqueta **img** como hacemos comunmente.
+Una vez situados alli, insertamos la imagen `hero-desktop.png` a través de una etiqueta **img** como hacemos comunmente.
 
 ![Next.js 14](https://i.postimg.cc/KvMpYjW3/nextjs-26.jpg "Imagenes")
 
-Guardamos los cambios y regresamos a nuestra página para verificar que la imagen se encuentra aplicada.
+Guardamos los cambios y recragamos la página para verificar que la imagen se encuentra aplicada.
 
 ![Next.js 14](https://i.postimg.cc/FKTVpkzR/nextjs-27.jpg "Imagenes")
 
@@ -239,16 +246,15 @@ Pero observemos que la etiqueta **img** se encuentra subrayada de amarillo porqu
 
 ![Next.js 14](https://i.postimg.cc/gkkwmt2x/nextjs-28.jpg "Imagenes")
 
-
-Para solucionar esto, se recomienda utilizar el componente **Image**. Para ello, importamos el componente y lo utilizamos en reemplazo de la etiqueta **img** de la siguiente manera:
+Para solucionar esto, se recomienda utilizar el componente **Image**. Para ello, importamos el componente y lo utilizamos en reemplazo de la etiqueta *img* de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/NjmXJJGL/nextjs-29.jpg "Imagenes")
 
-Guardamos los cambios y regresamos a la página y observamos que nos arroja un error en la compilación porque nos pide que el componente imagen debe tener necesariamente una propiedad **width**.
+Guardamos los cambios y regresamos a la página. Observamos que nos arroja un error en la compilación porque nos pide que el componente imagen debe tener necesariamente una propiedad *width*.
 
 ![Next.js 14](https://i.postimg.cc/nc671bJ6/nextjs-30.jpg "Imagenes")
 
-Esta propiedad es necesaria para asegurarnos que es optima la imagen que se está cargando y dejar el espacio que se necesita configurando un alto y un ancho. De esta forma, el espacio que ocupa la imagen siempre va a estar ahi. Por lo tanto, configuramos el ancho y el alto de la siguiente manera:
+Esta propiedad es necesaria para asegurarnos que es óptima la imagen que se está cargando y dejar el espacio que se necesita configurando un alto y un ancho. De esta forma, el espacio que ocupa la imagen siempre va a estar allí. Por lo tanto, configuramos el ancho y el alto de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/kGqxrLsT/nextjs-31.jpg "Imagenes")
 
@@ -258,17 +264,17 @@ Guardamos los cambios y recargamos la página para verificar que la imagen haya 
 
 A simple vista parece que ambas etiquetas bien configuradas obtienen el mismo resultado. 
 
-Pero analicemos en las herramientas de desarrollo cuando aplico la etiqueta **img**. Ingresamos a la sección **Network** y en la solapa **img** podemos ver la siguiente información:
+Pero analicemos en las herramientas de desarrollo cuando aplico la etiqueta **img**. Ingresamos a la sección *Network* y en la solapa *img* podemos ver la siguiente información:
 
 ![Next.js 14](https://i.postimg.cc/wMJC1RYW/nextjs-33.jpg "Imagenes")
 
-El formato de la imagen es **PNG** y el tamaño es de 244B.
+El formato de la imagen es *PNG* y el tamaño es de *244B*.
 
-Ahora, cuando aplico el componente **Image**. Ingresamos a la sección **Network** y en la solapa **img** podemos ver la siguiente información:
+Ahora, analicemos cuando aplico el componente **Image**. Ingresamos a la sección *Network* y en la solapa *img* podemos ver la siguiente información:
 
 ![Next.js 14](https://i.postimg.cc/25HRMBDJ/nextjs-34.jpg "Imagenes")
 
-El formato de la imagen es **webp** y el tamaño se encuentra en **disk cache** < 244B por lo que utilizar el componente **Image** resulta más optimo.
+El formato de la imagen es *webp* y el tamaño se encuentra en *disk cache* < 244B por lo que utilizar el componente **Image** resulta más optimo.
 
 ### Sistema de enrutado por archivos
 
