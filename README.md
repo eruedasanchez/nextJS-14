@@ -39,6 +39,13 @@
 18. [Continuando con el Straming](#continuando-con-el-straming)
 19. [Capturando el input del usuario](#capturando-el-input-del-usuario)
 20. [Actualizar la URL](#actualizar-la-url)
+21. [Sincronizar el estado inicial](#sincronizar-el-estado-inicial)
+22. [Mostrando la información](#mostrando-la-información)
+23. [Debounce](#debounce)
+24. [Reiniciar paginación](#reiniciar-paginación)
+25. [Crear paginación](#crear-paginación)
+
+
 
 
 
@@ -513,89 +520,91 @@ De este modo, con la función `replace()`, logramos concatenar la URL (http://lo
 
 ### Sincronizar el estado inicial
 
-Ahora, debemos sincronizar el estado inicial. Esto lo logramos haciendo que el valor por defecto del input sea el colocado en la *query* de la siguiente manera:  
+Ahora debemos sincronizar el estado inicial. Esto lo logramos haciendo que el valor por defecto del input sea el colocado en la *query* de la siguiente manera:  
 
 ![Next.js 14](https://i.postimg.cc/SxPVwp9p/nextjs-66.jpg "Sincronizar el estado inicial")
 
-Por lo tanto, si escribimos en el input *hola*, entonces el parametro search va a estar igualado a hola pero cuando recarguemos la página no lo vamos a perder sino que ya va a quedar almacenado. Incluso, si abrimos otra ventana y ejecutamos http://localhost:3000/dashboard/invoices, también va a quedar guardado el parametro *search* con el valor *hola*.   
+Por lo tanto, si escribimos en el input *hola*, entonces el parametro *query* va a estar igualado a hola pero cuando recarguemos la página no lo vamos a perder sino que va a quedar almacenado. Incluso, si abrimos otra ventana y ejecutamos http://localhost:3000/dashboard/invoices, también va a quedar guardado el parametro *search* con el valor hola.   
 
 ![Next.js 14](https://i.postimg.cc/zfqk4SDT/nextjs-67.jpg "Sincronizar el estado inicial")
 
 ### Mostrando la información
 
-Ahora, resta ver que, no solo cuando modifico el input se tiene que actualizar la URL, sino que tambien se deben mostrar los resultados. Para ello, nos dirigimos al archivo **page.tsx** dentro de la carpeta *invoices* en el directorio *app* y descomentamos el componente *Suspense* que contiene al componente *Table* que muestra los resultados.
+Resta ver que, no sólo cuando modifico el input se tiene que actualizar la URL, sino que también se deben mostrar los resultados. Para ello, nos dirigimos al archivo `page.tsx` dentro de la carpeta *invoices* en el directorio *app* y descomentamos el componente **Suspense** que contiene al componente **Table** que muestra los resultados.
 
 ![Next.js 14](https://i.postimg.cc/Rhj7d2ZL/nextjs-68.jpg "Mostrando la información")
 
 Hecho esto, observamos que tenemos los siguientes problemas:
 
-- No se encuentra la variable *query*. Por lo tanto, la definimos inicialmente vacia **''**.
+- No se encuentra la variable `query`. Por lo tanto, la definimos inicialmente vacia **''**.
 
-- No se encuentra la variable *currentPage*. Por lo tanto, la definimos inicialmente con el valor **1**.
+- No se encuentra la variable `currentPage`. Por lo tanto, la definimos inicialmente con el valor **1**.
 
 ![Next.js 14](https://i.postimg.cc/C5XjL9yf/nextjs-69.jpg "Mostrando la información")
 
-Y si recargamos la página podemos ver ahora, como se muestra la tabla de los clientes.
+Y si recargamos la página podemos ver como se muestra la tabla de los clientes.
 
 ![Next.js 14](https://i.postimg.cc/mgzH8Tzx/nextjs-70.jpg "Mostrando la información")
 
-Pero la información de la tabla debería actualizarse cada vez que modifico el input. El componente *Table* (ubicado en el archivo *table.tsx* dentro de la carpeta *invoices* en el directorio *ui*) cada vez que recibe la query, ejecuta la función *fetchFilteredInvoices(query, currentPage)*, que filtra las facturas de acuerdo a la *query* que le pasamos y la página actual.
+Pero la información de la tabla debería actualizarse cada vez que modifico el input. El componente **Table** (ubicado en el archivo `table.tsx` dentro de la carpeta *invoices* en el directorio *ui*) cada vez que recibe la query, ejecuta la función `fetchFilteredInvoices(query,currentPage)`, que filtra las facturas de acuerdo a la *query* que le pasamos y la página actual.
 
 ![Next.js 14](https://i.postimg.cc/GhhLczdq/nextjs-71.jpg "Mostrando la información")
 
-Por lo tanto, debemos pasar la información correcta. Las páginas de NextJs reciben la información de los ***SearchParams* y por lo tanto, los podemos pasar por *props* de la siguiente manera:
+Por lo tanto, debemos pasar la información correcta. Las páginas de [Next.js](https://github.com/vercel/next.js) reciben la información de los **SearchParams** y los podemos pasar por *props* de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/Z59P98Jh/nextjs-72.jpg "Mostrando la información")
 
-Es decir, pasamos por *props* que va a ser un objeto que va a contener los campos *query* (seteado en el input que se escriba o vacio en caso de que no haya nada escrito) y *page* (que va a mostrar la página actual o 1 si el parametro no existe).
+Es decir, pasamos por *props* un objeto que va a contener los campos *query* (seteado en el input que se escriba o vacio en caso de que no haya nada escrito) y *page* (que va a mostrar la página actual o 1 si el parametro no existe).
 
-Ahora, si recargamos la página podemos observar que a medida que vamos actualizando el input, se van mostrando los distintos resultados.
+Si recargamos la página podemos observar que a medida que vamos actualizando el input, se van mostrando los distintos resultados.
 
 ![Next.js 14](https://i.postimg.cc/wBKdnY2R/nextjs-73.jpg "Mostrando la información")
 
 ### Debounce
 
-Ahora, queremos evitar que cada vez que se pulse una tecla se recargue y renderize la página buscando los resultados. Por ejemplo, si ingresamos en el input *avengers*, no queremos que la página se renderice cada vez que pulsamos la tecla *a*, la tecla *v*, la tecla *e*, etc. 
+Queremos evitar que cada vez que se pulse una tecla se recargue y renderize la página buscando los resultados. Por ejemplo, si ingresamos en el input *avengers*, no queremos que la página se renderice cada vez que pulsamos la tecla *a*, la tecla *v*, la tecla *e*, etc. 
 
-Por lo tanto, la idea de hacer un **debounce** consiste en, cada vez que se pulsa una tecla, esperar unos pocos milisegundos por ejemplo que chequea que si pasados los milisegundos determinados se pulsa una tecla. Si no se pulsa una tecla, disparamos la acción o devolvemos el resultado. En caso de pulsar una tecla, reiniciar el contador y esperar si se vuelve o no a pulsar una tecla. De esta manera, evitamos mostrar los resultados cada vez que se pulsa una tecla sino esperar a que se termine de teclear.
+Por lo tanto, la idea de hacer un **debounce** consiste en, cada vez que se pulsa una tecla, esperar unos pocos milisegundos que chequea que si pasados los milisegundos determinados se pulsa una tecla. Si no se pulsa una tecla, disparamos la acción o devolvemos el resultado. En caso de pulsar una tecla, reiniciar el contador y esperar si se vuelve o no a pulsar una tecla. De esta manera, evitamos mostrar los resultados cada vez que se pulsa una tecla sino esperar a que se termine de teclear.
 
-Para realizar esto, comenzamos instalando la dependencia *debounce* ejecutando el siguiente comando en el directorio de nuestro proyecto:
+Para realizar esto, comenzamos instalando la dependencia `debounce` ejecutando el siguiente comando en el directorio de nuestro proyecto:
 
 ```bash
 $ npm install use-debounce
 ```
 
-Luego, importamos la dependencia **use-debounce** en el archivo *search.tsx* y envolvemos la función *handleSearch* que es la realiza la búsqueda y le colocamos el intervalo en milisegundos que tiene que esperar entre pulsación de teclas (en este caso, colocamos 500).
+Luego, importamos la dependencia `use-debounce` en el archivo `search.tsx` y envolvemos la función `handleSearch` que es la realiza la búsqueda y le colocamos el intervalo en milisegundos que tiene que esperar entre pulsación de teclas (en este caso, colocamos 500).
 
 ![Next.js 14](https://i.postimg.cc/vB5qDDJb/nextjs-74.jpg "Debounce")
 
 ### Reiniciar paginación
 
-Ahora, vamos a colocar la paginación. Es decir, cada vez que realicemos una búsqueda, queremos reiniciar la paginación. Por lo tanto, cada vez que realizamos una búsqueda nueva, vamos a setear el parametro *page* en 1 de la siguiente manera:
+Vamos a colocar la paginación. Es decir, cada vez que realicemos una búsqueda, queremos reiniciar la paginación. Por lo tanto, cada vez que realicemos una búsqueda nueva, setearemos el parametro *page* en 1 de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/TY0q3BPy/nextjs-75.jpg "Reiniciar paginación")
 
-Ahora, si ingresa en el input *delba*, se agrega el parametro *page* a la URL.
+Ahora, si se ingresa en el input *delba*, se agrega el parametro *page* a la URL.
 
 ![Next.js 14](https://i.postimg.cc/y8twtd2B/nextjs-76.jpg "Reiniciar paginación")
 
 ### Crear paginación
 
-Ahora, para añadir la paginación, vamos a regresar al archivo *page.tsx* dentro de la carpeta invoices en el directorio *app*. En este archivo, tenemos comentado el componente que realiza la paginaación **Pagination**. Luego, descomentamos este componente y observamos que pasa por props una variable llamada *totalPages* que determina cuantas páginas en total tiene la tabla. Este dato lo podemos obtener de la DB realizando un *fetch* a la tabla de facturas para saber cuanatas páginas tenemos. Para ello, utilizamos la función *fetchInvoicesPages(query)* dependiendo de la *query*.
+Para añadir la paginación, regresamos al archivo `page.tsx` dentro de la carpeta *invoices* en el directorio *app*. En este archivo, tenemos comentado el componente que realiza la paginación **Pagination**. 
+
+Entonces, descomentamos este componente y observamos que se pasa por *props* una variable llamada `totalPages` que determina cuantas páginas en total tiene la tabla. Este dato lo podemos obtener de la DB realizando un *fetch* a la tabla de facturas para saber cuántas páginas tenemos. Para ello, utilizamos la función `fetchInvoicesPages(query)` dependiendo de la *query*.
 
 ![Next.js 14](https://i.postimg.cc/fyVkvCFD/nextjs-77.jpg "Crear paginación")
 
-Ahora, nos dirigimos al archivo *pagination.tsx* que contiene el componente **Pagination** y descomentamos lo que se encuentra comentado y obtenemos los siguientes errores:
+Ahora, nos dirigimos al archivo `pagination.tsx` que contiene el componente **Pagination**, descomentamos lo que se encuentra comentado y obtenemos los siguientes errores:
 
 ![Next.js 14](https://i.postimg.cc/8PM29WLH/nextjs-78.jpg "Crear paginación")
 
-- *createPageURL* se encarga de que cada flecha se diriga a la página correcta
+- `createPageURL` se encarga de que cada flecha se diriga a la página correcta
 
-- *currentPage* que lo vamos a recuperar utilizando *usePathname* para leer y recuperar del pathname y *useSearchParams* para recuperar los params
+- `currentPage` que lo vamos a recuperar utilizando *usePathname* para leer y recuperar del pathname y *useSearchParams* para recuperar los params
 
-- *allPages* determina todas las páginas
+- `allPages` determina todas las páginas
 
-Ahora, recargando la página podemos ver que se visualiza la paginación pero todavia no funciona, es decir, al hacer click sobre un número no se cambia de página.
+Recargando la página podemos ver que se visualiza la paginación pero todavia no funciona, es decir, al hacer click sobre un número no se cambia de página.
 
 ![Next.js 14](https://i.postimg.cc/XqfrDL35/nextjs-79.jpg "Crear paginación")
 
