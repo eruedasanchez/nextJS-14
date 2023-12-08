@@ -34,6 +34,12 @@
 13. [Hooks de Next Js](#hooks-de-next-js)
 14. [Base de datos Postgres](#base-de-datos-postgres)
 15. [Fetching de datos](#fetching-de-datos)
+16. [Renderizar datos en el dashboard](#renderizar-datos-en-el-dashboard)
+17. [Loading](#loading)
+18. [Continuando con el Straming](#continuando-con-el-straming)
+19. [Capturando el input del usuario](#capturando-el-input-del-usuario)
+20. [Actualizar la URL](#actualizar-la-url)
+
 
 
 
@@ -407,67 +413,67 @@ Finalmente, volvemos a nuestra base de datos y vemos como se crearon exitosament
 
 ### Fetching de datos
 
-Una vez creada nuestra DB, vamos a proceder a realizar el fetching de datos.
+Una vez creada nuestra DB, procedemos a realizar el fetching de datos.
 
-En este caso, NextJs va a realizar el renderizado pero en el servidor para optimizar recursos y el cliente unicamente va a recibir la respuesta y renderizar lo que el contenido correspondiente.
+En este caso, [Next.js](https://github.com/vercel/next.js) va a realizar el renderizado pero en el servidor para optimizar recursos y el cliente únicamente va a recibir la respuesta y renderizar lo que el contenido correspondiente.
 
-Para ello, vamos a realizar el fetching de datos en el archivo **page.tsx** dentro de la carpeta *dashboard*.
+Para ello, vamos a realizar el fetching de datos en el archivo `page.tsx` dentro de la carpeta *dashboard*.
 
-Por defecto, los componentes (incluyendo a nuestra página **page.tsx**) se renderizan en el servidor. Por lo tanto, a esto lo lllamamos **React Server Component**. Una ventaja de estos componentes es que puede ser asíncrono. Por lo tanto, podríamos hacer un *await fetch* para poder obtener la información de la DB o de una API externa.
+Por defecto, los componentes (incluyendo a la página `page.tsx`) se renderizan en el servidor. Por lo tanto, a esto lo lllamamos un **React Server Component**. Una ventaja de estos componentes es que puede ser asíncrono. Por lo tanto, podríamos hacer un *await fetch* para poder obtener la información de la DB o de una API externa.
 
-Pero como queremos utilizar nuestra DB, en el archivo **data.ts** dentro de la carpeta *lib* en el directorio *app*, nos encontramos con varias funciones que nos permiten realizan el fetch para obtener los datos de las tablas definidas en nuestra DB. Algunas de ellas son  *fetchRevenue()*, *fetchLatestInvoices()*, *fetchCustomers()*. Entonces, en el archivo **page.tsx**, aplicamos la función *fetchRevenue()* de la siguiente manera:
+Pero como queremos utilizar nuestra DB, en el archivo `data.ts` dentro de la carpeta *lib* en el directorio *app*, se encuentran varias funciones que nos permiten realizan el *fetch* para obtener los datos de las tablas definidas en nuestra DB. Algunas de ellas son  `fetchRevenue()`, `fetchLatestInvoices()`, `fetchCustomers()`. Por lo tanto, en el archivo `page.tsx`, aplicamos la función `fetchRevenue()` de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/kGBtpTjH/nextjs-53.jpg "Fetching de datos")
 
-Observemos también como este archivo, al ser un componente de servidor, solo *consologea* el resultado del fetch en la terminal pero no en la consola del cliente, es decir, si inspeccionamos la pagina *dashboard*, vamos a observar que la consola no se muestra el resultado de *fetch*.
+Observemos también como este archivo, al ser un componente de servidor, solo *consologea* el resultado del fetch en la terminal pero no en la consola del cliente, es decir, si inspeccionamos la pagina *dashboard*, vamos a observar que en la consola no se muestra el resultado de *fetch*.
 
 ![Next.js 14](https://i.postimg.cc/WbLP1Xr6/nextjs-54.jpg "Fetching de datos")
 
 ### Renderizar datos en el dashboard
 
-Ahora, vamos a renderizar los datos en el dashboard. Para ello, NextJs nos provee un esqueleto para completar que se muestra a continuación.
+Ahora vamos a renderizar los datos en el dashboard. Para ello, [Next.js](https://github.com/vercel/next.js) nos provee un esqueleto para completar que se muestra a continuación.
 
 ![Next.js 14](https://i.postimg.cc/XNrXBjJK/nextjs-55.jpg "Renderizar datos en el dashboard")
 
-Por lo tanto, comenzamos pasando el gráfico (descomentando la linea 21) del Revenue para mostrar el gráfico dado que el componente **RevenueChart** muestra el gráfico (descomentar los comentarios en el archivo **revenue-chart.tsx**).
+Comenzamos pasando el gráfico (descomentando la linea 21) del Revenue para mostrar el gráfico dado que el componente **RevenueChart** muestra el gráfico (descomentar los comentarios en el archivo `revenue-chart.tsx`).
 
-Luego, voy a querer mostrar los datos correspondientes a *latestInvoices* (descomentando la linea 22) de LatestInvoices para las facturas de los últimos compradores dado que el componente **LatestInvoices** muestra las facturas de los últimos compradores (descomentar los comentarios en el archivo **latest-invoices.tsx**).
+Luego, voy a querer mostrar los datos correspondientes a *latestInvoices* (descomentando la linea 22) de LatestInvoices para las facturas de los últimos compradores dado que el componente **LatestInvoices** muestra las facturas de los últimos compradores (descomentar los comentarios en el archivo `latest-invoices.tsx`).
 
-Por lo tanto, el archivo *page.tsx* queda de la siguiente manera dejando de manera opcional poder obtener más información.
+Por lo tanto, el archivo `page.tsx` queda de la siguiente manera dejando de manera opcional poder obtener más información.
 
 ![Next.js 14](https://i.postimg.cc/7ZT2Gj16/nextjs-56.jpg "Renderizar datos en el dashboard")
 
-Ahora, sabemos que el fetch de la función *fetchRevenue* demora 2 segundos y el fetch de la función *fetchLatestInvoices* demora 1 segundo. Por lo tanto, se demorará al menos 3 segundos en renderizar la página porque al utilizar **await** se espera que se cumpla un pedido para poder avanzar con el siguiente. 
+Sabemos que el fetch de la función `fetchRevenue()` demora 2 segundos y el fetch de la función `fetchLatestInvoices()` demora 1 segundo. Por lo tanto, se demorará al menos 3 segundos en renderizar la página porque al utilizar *await* se espera que se cumpla un pedido para poder avanzar con el siguiente. 
 
-Supongamos ahora, que la función *fetchRevenue* demora artificalmente 3 segundos (descomentamos la linea 22 en el archivo *data.ts*). Ahora, al recargar la página, demora 3 segundos, lo que empeora el rendimiento de la página dado que hasta no cargar todos estos datos, no puede continuar con el renderizado de la página.
+Supongamos que la función `fetchRevenue()` demora artificalmente 3 segundos (descomentamos la linea 22 en el archivo `data.ts`). Ahora, al recargar la página, demora 3 segundos, lo que empeora el rendimiento de la página dado que hasta no cargar todos estos datos, no puede continuar con el renderizado de la página.
 
 ### Loading
 
-Para mejorar la experiencia del usuario y solucionar el problema, vamos a utilizar lo que se conoce como **Streaming de los datos**. Es decir, mostrar todo aquello que se encuentre disponible y lo que no está disponible, mostrar un **esqueleto**. A esto se lo conoce como **suspense**.
+Para mejorar la experiencia del usuario y solucionar el problema, vamos a utilizar lo que se conoce como **Straming de los datos**. Es decir, mostrar todo aquello que se encuentre disponible y para lo que no, mostrar un **skeleton**. A esto se lo conoce como **suspense**.
 
-Ahora, el objetivo es que se puede renderizar todo sin necesidad de esperar al gráfico, es decir, a que se realice el *fetchRevenue*. Para lograr esto, tenemos dos opciones:
+El objetivo es que se puede renderizar todo sin necesidad de esperar al gráfico, es decir, que se realice el `fetchRevenue()`. Para lograr esto, tenemos dos opciones:
 
-- Crear un componente **Loading**, que coloque la leyendo *Cargando* mientras espera que se realice el fetch creando un archivo **** y colocando el siguiente código:
+- Crear un componente **Loading**, que coloque la leyendo *Cargando* mientras espera que se realice el fetch creando el archivo `loading.tsx` y colocando el siguiente código:
 
 ![Next.js 14](https://i.postimg.cc/rFwc8FDk/nextjs-57.jpg "Loading")
 
-De esta manera, NextJs reconoce al archivo **loading.tsx** (no cambiar el nombre) para que se muestre el contenido dentro de él mientras espera que se cargue el contenido de los demás componentes.
+De esta manera, [Next.js](https://github.com/vercel/next.js) reconoce al archivo `loading.tsx` (importante no cambiarle el nombre) para que se muestre el contenido dentro de él mientras espera que se cargue el contenido de los demás componentes.
 
-Sin embargo, esto es muy sencillo y podríamos llevarlo a otro nivel cargando, por ejemplo, el componente **** que se encuentra en el componente **skeletons.tsx** 
+Sin embargo, esto es muy sencillo y podríamos llevarlo a otro nivel cargando, por ejemplo, el componente que se encuentra en `skeletons.tsx` 
 
 Ahora, al recargar la página, obtenemos el siguiente resultado:
 
 ![Next.js 14](https://i.postimg.cc/mDsh3Fg1/nextjs-58.jpg "Loading")
 
-Sin embargo, podemos observar que, unicamente por la demora en cargar los gráficos (*fetchRevenue*) estamos viendo todo el esqueleto de la página y esto lo queremos mejorar mediante el **Straming de Datos**.
+Sin embargo, observamos que unicamente por la demora en cargar los gráficos (`fetchRevenue()`) estamos viendo todo el esqueleto de la página y esto lo queremos mejorar mediante el **Straming de Datos**.
 
 ### Continuando con el Straming
 
-Para realizar esta optimización, en el archivo **page.tsx**, envolvemos el componente (*RevenueChart*) que genera los gráficos y que genera conflictos en otro componente de React llamado **Suspense**. Este componente es asíncrono, lo vamos a esperar y le colocamos un *fallback*. Es decir, mientras el Revenue se este cargando, vamos a mostrar el *fallback* y una vez que se haya cargado, se renderizará el contenido del componente *Revenue*.
+Para realizar esta optimización, en el archivo `page.tsx`, envolvemos el componente (**RevenueChart**) que genera los gráficos y conflictos en otro componente de React llamado **Suspense**. Este componente es asíncrono, lo vamos a esperar y le colocamos un *fallback*. Es decir, mientras el Revenue se este cargando, mostramos el *fallback* y una vez que se haya cargado, se renderizará el contenido del componente **Revenue**.
 
 ![Next.js 14](https://i.postimg.cc/DZx4Pdpp/nextjs-59.jpg "Continuando con el Straming")
 
-Luego, quitamos la instrucción del fetch del *revenue* (linea 8) y nos dirigimos al archivo *revenue-chart.tsx* que contiene al componente **Revenue Chart**. Y en lugar de que le lleguen las *props*, vamos a hacer que el *Revenue* lo cargue de la siguiente manera:
+Quitamos la instrucción del fetch del *revenue* (linea 8) y nos dirigimos al archivo `revenue-chart.tsx` que contiene al componente **Revenue Chart**. Y en lugar de que le lleguen las *props*, hacemos que el *Revenue* lo cargue de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/SKJKpFgd/nextjs-60.jpg "Continuando con el Straming")
 
@@ -475,37 +481,35 @@ Ahora, en el *fallback* del componente *Suspense* podemos cargar el esqueleto co
 
 ![Next.js 14](https://i.postimg.cc/kM1qqhth/nextjs-61.jpg "Continuando con el Straming")
 
-Finalmente, al recargar la página obtenemos el esqueleto correspondiente al componente del gráfico pero podemos observar como se renderiza el componente que contiene la factura de los últimos clientes .
+Finalmente, al recargar la página, obtenemos el esqueleto correspondiente al componente del gráfico pero podemos observar como se renderiza el componente que contiene la factura de los últimos clientes .
 
 ![Next.js 14](https://i.postimg.cc/brB7krXS/nextjs-62.jpg "Continuando con el Straming")
 
-### Trabajando con Invoices Page
-
-Ahora, vamos a trabajar con el contenido de la página de Invoices Page. 
-
 ### Capturando el input del usuario
 
-Comenzamos capturando el input que va colocando el usuario mediante la función *handleSearch* en el archivo **search.tsx** de la siguiente manera:
+Ahora, vamos a trabajar con el contenido de la página **Invoices Page**. 
+
+Comenzamos capturando el input que va colocando el usuario mediante la función `handleSearch` en el archivo `search.tsx` de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/JhvPkgdz/nextjs-63.jpg "Capturando el input del usuario")
 
-Ahora, vamos a necesitar crear una URL. Para ello, vamos a import el hook **useSearchParams** que nos va a permitir recuperar el query o el parametro que ingresemos. Por ejemplo, en la ruta http://localhost:3000/dashboard/invoices?query=hola, el query o parametro que se ejecuta es query y el valor que se recupera el hola. 
+Vamos a necesitar crear una URL. Para ello, importamos el hook **useSearchParams** que nos permite recuperar el query o el parametro que ingresemos. Por ejemplo, en la ruta http://localhost:3000/dashboard/invoices?query=hola, el query o parametro que se ejecuta es *query* y el valor que se recupera es *hola*. 
 
-Por lo tanto, cada vez que el usuario modifica el input, vamos a crear los *params* con lo que se haya recuperado con el hook *useSearchParams*. Luego, si el usuario está modificando el usuario, quiero crear o *setear* un parametro *search* donde se inserte el término o *term* que se este ingresando y en caso de que el input este vacio, borrar el parametro search de la URL.
+Por lo tanto, cada vez que el usuario modifica el input, vamos a crear los *params* con lo que se haya recuperado con el hook `useSearchParams`. Si el usuario está modificando el input, quiero crear o *setear* un parametro *query* donde se inserte el término o *term* que se este ingresando y en caso de que el input este vacio, borrar el parametro *query* de la URL.
 
 Entonces, el código nos queda de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/4xm87Tbj/nextjs-64.jpg "Capturando el input del usuario")
 
-Tambien queremos actualizar la URL. Para ello, si ejecutamos la función *params.toString()* observamos que si tenemos la ruta http://localhost:3000/dashboard/invoices y colocamos en el input **hola** por ejemplo, al ejecutar obtenemos *params.toString()* 'search=hola'.
+También queremos actualizar la URL. Para ello, si ejecutamos la función `params.toString()`, observamos que si tenemos la ruta http://localhost:3000/dashboard/invoices y colocamos en el input *hola*, al ejecutar obtenemos `'query=hola'`.
 
 ### Actualizar la URL
 
-Para actualizar la URL, vamos a utilizar los hooks *usePathname*, *useRouter*. Una vez que tengamos todos los params, reemplazamos la URL de la siguiente manera:
+Para actualizar la URL, vamos a utilizar los hooks **usePathname** y **useRouter**. Una vez que tengamos todos los *params*, reemplazamos la URL de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/KvtG8gpw/nextjs-65.jpg "Capturando el input del usuario")
 
-De este modo, con la función **replace**, logramos concatenar la URL (http://localhost:3000/dashboard/invoices) con el parametro search ingresado por input. Es decir, cada vez que sea actualiza el input, se modifica el valor de *search*.
+De este modo, con la función `replace()`, logramos concatenar la URL (http://localhost:3000/dashboard/invoices) con el parametro query ingresado por input. Es decir, cada vez que sea actualiza el input, se modifica el valor de *query*.
 
 ### Sincronizar el estado inicial
 
