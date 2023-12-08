@@ -7,7 +7,7 @@
   <br/>
   <br/>
 
-  <h2 align="center">Next.js 14</h2>
+  <h1 align="center">Next.js 14</h1>
 
   Tutorial de [Next.js 14](https://github.com/vercel/next.js) donde se verá desde la introducción hasta la conexión a una base de datos PostgreSQL, pasando por estilos, fuentes, imágenes, optimización de carga y más.
 
@@ -17,19 +17,27 @@
 </div>
 <br/>
 
+# Índice
+
+1. [Inicialización de un proyecto](#inicialización-de-un-proyecto)
+2. [Capitulo 1](#capitulo-1)
+3. [Capitulo 1](#capitulo-1)
+4. [Capitulo 1](#capitulo-1)
+5. [Capitulo 1](#capitulo-1)
+
 ### Inicialización de un proyecto
 
-Para inicializar un projecto, comenzamos ejecutando el siguiente comando:
+Para inicializar un proyecto en [Next.js 14](https://github.com/vercel/next.js), comenzamos ejecutando el siguiente comando:
 
 ```bash
 $ npx create-next-app@latest
 ```
 
-Colocamos `@latest` para asegurarnos que estamos utilizamos la ultima versión y no una versión antigua que podriamos tener guardada.
+Colocamos `@latest` para asegurarnos que estamos utilizamos la última versión y no una versión antigua que podriamos tener guardada.
 
-Luego de ejecutar este comando, nos pregunta que nombre le queremos colocar al projecto. En este caso, lo nombramos con el nombre **ejemplo**. También nos consulta si queremos usar TypeScript, ESLint, TailwindCss, etc. Colocamos por defecto a todas con la opción **Yes** como se muestra en la imagen a continuación:
+Luego de ejecutar este comando, se nos consulta por el nombre que le queremos colocar al proyecto. En este caso, lo nombramos como *ejemplo*. También se nos consulta si queremos usar [TypeScript](https://github.com/microsoft/TypeScript), [ESLint](https://eslint.org/), [TailwindCss](https://tailwindcss.com/), etc. Colocamos por defecto a todas con la opción *Yes* como se muestra a continuación:
 
-![Next.js 14](https://i.postimg.cc/dVTtHDR4/nextjs-1.jpg "Inicialización de un projecto")
+![Next.js 14](https://i.postimg.cc/dVTtHDR4/nextjs-1.jpg "Inicialización de un proyecto")
 
 ### Capitulo 1
 
@@ -193,7 +201,7 @@ Por último, guardamos los cambios y vemos como se cambio la fuente en nuestra p
 
 ![Next.js 14](https://i.postimg.cc/kGk0HJFt/nextjs-21.jpg "Importando y cargando fuentes")
 
-### Agregar más fuentes al proyecto
+### Agregar mas fuentes al proyecto
 
 Si queremos agregar más fuentes al proyecto, creamos otra variable, por ejemplo **lusitana** de la misma manera que para el caso de Montserrat:
 
