@@ -44,8 +44,12 @@
 23. [Debounce](#debounce)
 24. [Reiniciar paginación](#reiniciar-paginación)
 25. [Crear paginación](#crear-paginación)
-
-
+26. [Dandole vida a la paginación](#dandole-vida-a-la-paginación)
+27. [Server Actions](#server-actions)
+28. [Validaciones](#validaciones)
+29. [Crear la fecha](#crear-la-fecha)
+30. [Llamar a la base de datos e implementar información](#llamar-a-la-base-de-datos-e-implementar-información)
+31. [Evitar la caché y redireccionar con NextJs](#evitar-la-caché-y-redireccionar-con-nextjs)
 
 
 
@@ -612,7 +616,7 @@ Recargando la página podemos ver que se visualiza la paginación pero todavia n
 
 Anterirormente, logramos que la paginación funcione, es decir, si paso por el parametro *page* el número 2, el componente **Pagination** va a marcar como *currentPage* (colocarle fondo azul y letras de color blanco) a la página 2. Pero el problema que tenemos que resolver, es que al clicklear un número de página, se traslade a ella.
 
-Para ello, seteamos el parametro *page* de la URL con el valor de la página a la que me quiero dirigir y finalmente, devolver la URL a la que me quiero dirigir. En nuestro, sería http://localhost:3000/dashboard/invoices (lo recuperamos usando *Pathname*) y los parametros actualizados (*params.toString()*) de la siguiente manera:
+Para ello, seteamos el parametro *page* de la URL con el valor de la página a la que me quiero dirigir y finalmente, devolver la URL a la que me quiero dirigir. En nuestro, sería http://localhost:3000/dashboard/invoices (lo recuperamos usando *Pathname*) y los parametros actualizados (`params.toString()`) de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/c1vMcgj4/nextjs-80.jpg "Dandole vida a la paginación")
 
@@ -622,21 +626,21 @@ Recargamos la página y efectivamente se encuentra realizada la paginación.
 
 ### Server Actions
 
-Vamos a utilizar los Server Actions en un formulario para generar facturas.
+Vamos a utilizar los **Server Actions** en un formulario para generar facturas.
 
 Un Server Action permite ejecutar código asíncrono directamente en el servidor. Y esto elimina la necesidad de crear API's cada vez que necesite mutar, crear o actualizar datos por ejemplo. Por lo tanto, en lugar de crear 3 endpoints para cada una de las acciones, los Server Actions evitan esto.
 
-En nuestro ejemplo, comenzamos dirigiendonos al archivo *page.tsx* dentro de la carpeta *Invoices*. Allí tenemos el componente *CreateInvoice* correspondiente al boton Create Invoice. Si lo clickeamos, nos redirige a la página http://localhost:3000/dashboard/invoices/create pero como todavia no se encuentra implementada nos arroja un erroja 404.
+En nuestro ejemplo, comenzamos dirigiendonos al archivo `page.tsx` dentro de la carpeta *invoices*. Allí tenemos el componente **CreateInvoice** correspondiente al boton *Create Invoice*. Si lo clickeamos, nos redirige a la página http://localhost:3000/dashboard/invoices/create pero como todavia no se encuentra implementada, arroja un error 404.
 
-Por lo tanto, vamos a crear esta página. Entonces, dentro de la carpeta *create*, creamos el archivo *page.tsx* y escribimos el siguiente componente:
+Por lo tanto, creamos esta página. Dentro de la carpeta `create`, creamos el archivo `page.tsx` y escribimos el siguiente componente:
 
 ![Next.js 14](https://i.postimg.cc/WpyNDnh8/nextjs-82.jpg "Server Actions")
 
-La página ha sido creada exitosamente pero la página no hace absolutamente nada porque el formulario no está realizando ninguna acción. Entonces, debemos solucionar el formulario que se encuentra en el archivo *create-form.tsx* en la carpeta *invoices* dentro del directorio *ui*. Para ello, vamos a crear un archivo llamado *actions.ts* dentro de la carpeta *lib* que contiene toda lógica sobre la mutación (crear, borrar, actualizar datos por ejemplo) de nuestra página. Este archivo contiene el siguiente código:
+La página ha sido creada exitosamente pero no hace absolutamente nada porque el formulario no está realizando ninguna acción. Entonces, debemos solucionar el formulario que se encuentra en el archivo `create-form.tsx` en la carpeta *invoices* dentro del directorio *ui*. Para ello, vamos a crear un archivo llamado `actions.ts` dentro de la carpeta *lib* que contiene toda lógica sobre la mutación (crear, borrar, actualizar datos por ejemplo) de la página. Este archivo contiene el siguiente código:
 
 ![Next.js 14](https://i.postimg.cc/nVwQ2BwS/nextjs-83.jpg "Server Actions")
 
-- *createInvoice* es una acción y lo utilizamos en el el archivo *create-form.tsx* en el formulario
+- `createInvoice` es una acción y lo utilizamos en el el archivo `create-form.tsx` en el formulario
 
 Con esto, podemos ver como se genera efectivamente la factura y se muestra por consola.
 
@@ -648,23 +652,23 @@ Luego, podriamos obtener toda la información del formulario de la siguiente man
 
 ### Validaciones
 
-Para realizar las validaciones vamos a utilizar la libreria **zod**. Para instalarla, vamos a ejecutar el siguiente comando:
+Para realizar las validaciones utilizaremos la libreria **zod**. Para instalarla, ejecutamos el siguiente comando:
 
 ```bash
 $ npm install zod
 ```
 
-Luego, vamos a crear el esquema *CreateInvoiceSchema* que valide el tipo de los datos cada vez que se crea un objeto y el subesquema *CreateInvoiceFormSchema* que valida el tipo de los datos ingresados en el formulario pero como no se ingresa id y la fecha, no lo validamos.
+Luego, creamos el esquema **CreateInvoiceSchema** que valida el tipo de los datos cada vez que se crea un objeto y el subesquema **CreateInvoiceFormSchema** que valida el tipo de los datos ingresados en el formulario pero como no se ingresa id y la fecha, lo omitimos.
 
 ![Next.js 14](https://i.postimg.cc/ZRmDf0V0/nextjs-86.jpg "Validaciones")
 
-Ahora, validamos la información que almacenamos en la variable *rawFormData* donde vamos a extraer el *customerId*, *amount* y *status*.
+Ahora, validamos la información que almacenamos en la variable `rawFormData` donde vamos a extraer el `customerId`, `amount` y `status`.
 
 ![Next.js 14](https://i.postimg.cc/tJbQxp1G/nextjs-87.jpg "Validaciones")
 
 ### Crear la fecha
 
-Ahora, vamos a crear la fecha y elegimos el metodo *ISOString* porque el formato que necesita es, por ejemplo, 2023-11-25 y obtenemos solo la componente *date* porque la *hora* no me interesa.
+Para crear la fecha elegimos el metodo `ISOString` porque el formato que necesita es, por ejemplo, 2023-11-25 y obtenemos solo la componente *date* porque la *hora* no me interesa.
 
 ![Next.js 14](https://i.postimg.cc/FsjRydfw/nextjs-88.jpg "Crear la fecha")
 
@@ -680,7 +684,7 @@ Una vez hecho esto, creamos una factura para el cliente de la siguiente manera:
 
 ### Evitar la caché y redireccionar con NextJs
 
-Sin embargo, si vemos ahora la tabla con el historial de facturas, *Emmil* no aparece.
+Sin embargo, si vemos ahora la tabla con el historial de facturas, el cliente *Emil* no aparece.
 
 ![Next.js 14](https://i.postimg.cc/3rLXpqvP/nextjs-91.jpg "Llamar a la base de datos e implementar información")
 
@@ -688,15 +692,15 @@ Pero si ingresamos en el input su nombre si figura la factura creada.
 
 ![Next.js 14](https://i.postimg.cc/nVQmjLnQ/nextjs-92.jpg "Llamar a la base de datos e implementar información")
 
-Esto significa que sigue mostrando los datos antiguos porque están cacheados. Para dejar de cachear los datos, tenemos que indicar que rutas hay que revalidar luego de ejecutar la función de *sql*, es decir, que rutas van a tener datos y por lo tanto, vamos a querer que refresque esos datos. Esto lo hacemos con el método *revalidatePath* y pasamos por parametro la ruta a revalidar. Y por último, redireccionamos al usuario a la misma ruta utilizando el método *redirect* y pasamos por parametro la ruta a redireccionar.
+Esto significa que sigue mostrando los datos antiguos porque están **cacheados**. Para dejar de cachear los datos, tenemos que indicar que rutas hay que revalidar luego de ejecutar la función de `sql`, es decir, que rutas van a tener datos y por lo tanto, vamos a querer que refresque esos datos. Esto lo hacemos con el método `revalidatePath()` y pasamos por parámetro la ruta a revalidar. Y por último, redireccionamos al usuario a la misma ruta utilizando el método `redirect()` y pasamos por parametro la ruta a redireccionar.
 
 ![Next.js 14](https://i.postimg.cc/8zFdHbSt/nextjs-93.jpg "Llamar a la base de datos e implementar información")
 
-Ahora, creamos una nueva factura para el cliente *Steph Diez*
+Creamos una nueva factura para el cliente *Steph Diez*
 
 ![Next.js 14](https://i.postimg.cc/VLtLWShX/nextjs-94.jpg "Llamar a la base de datos e implementar información")
 
-Luego, una vez clickeado el boton de *Create invoice* nos redirecciona a http://localhost:3000/dashboard/invoices y podemos observar que ahora si se encuentra actualizada la tabla de facturación a clientes.
+Luego, una vez clickeado el boton de *Create Invoice* nos redirecciona a http://localhost:3000/dashboard/invoices y podemos observar que ahora si se encuentra actualizada la tabla de facturación a clientes.
 
 ![Next.js 14](https://i.postimg.cc/L8XS0nCy/nextjs-95.jpg "Llamar a la base de datos e implementar información")
 
