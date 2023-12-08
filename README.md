@@ -20,8 +20,8 @@
 # Índice
 
 1. [Inicialización de un proyecto](#inicialización-de-un-proyecto)
-2. [Capitulo 1](#capitulo-1)
-3. [Capitulo 1](#capitulo-1)
+2. [Capítulo 1](#capítulo-1)
+3. [Revisando código](#revisando-código)
 4. [Capitulo 1](#capitulo-1)
 5. [Capitulo 1](#capitulo-1)
 
@@ -39,63 +39,63 @@ Luego de ejecutar este comando, se nos consulta por el nombre que le queremos co
 
 ![Next.js 14](https://i.postimg.cc/dVTtHDR4/nextjs-1.jpg "Inicialización de un proyecto")
 
-### Capitulo 1
+### Capítulo 1
 
-Anteriormente, vimos como inicializar un proyecto desde cero. Pero, Next.js nos ofrece una manera de inicializar un proyecto creado por ellos a modo de ejemplo para poder explorar todos sus recursos ejecutando el siguiente comando:
+Anteriormente vimos como inicializar un proyecto desde cero. Pero [Next.js 14](https://github.com/vercel/next.js) ofrece una manera de inicializar un proyecto creado por ellos a modo de ejemplo para poder explorar todos sus recursos ejecutando el siguiente comando:
 
 ```bash
 $ npx create-next-app@latest nextjs-dashboard --use-npm --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example"
 ```
 
-Analicemos este comando:
+Analicemos en detalle las partes de este comando:
 
-- `npx create-next-app@latest nextjs-dashboard` crea el proyecto **nextjs-dashboard** como lo habiamos hecho anteriormente.
+- `npx create-next-app@latest nextjs-dashboard` crea el proyecto `nextjs-dashboard` como lo habíamos inicializado anteriormente.
 
-- `--use-npm` se utiliza para asegurarse que estamos utilizando **npm**. 
+- `--use-npm` se utiliza para asegurarse que estamos utilizando *npm*. 
 
-- `--example` indica que podemos crear un proyecto no desde cero sino a través de un repositorio dado que en este caso, por ejemplo, podemos utilizar el repositorio de **Vercel** https://github.com/vercel/next-learn/tree/main/dashboard/starter-example que nos provee el esqueleto para realizar el dashboard planteado.  
+- `--example` indica que podemos crear un proyecto no desde cero sino a través de un repositorio dado. En este caso, utilizaremos el repositorio [Dashboard de Vercel](https://github.com/vercel/next-learn/tree/main/dashboard/starter-example) que provee el esqueleto para realizar el dashboard planteado.  
 
-Una vez ejecutado este comando, comienza a inicializarse nuestro proyecto tomando las configuraciones del dashboard proporcionado por Vercel.
+Una vez ejecutado este comando, comienza a inicializarse el proyecto tomando las configuraciones del dashboard proporcionado.
 
-Ahora, podemos ejecutar el siguiente comando para ver los scripts que tenemos disponible:
+Luego, podemos ejecutar el siguiente comando para ver los scripts que tenemos disponibles:
 
 ```bash
 $ npm run
 ```
 
-Obteniendo el siguiente resultado:
+Y obtenemos el siguiente resultado:
 
 ![Next.js 14](https://i.postimg.cc/GpMKLkmx/nextjs-2.jpg "Scripts al iniciar un projecto")
 
-- `start` correspondiente a producción
+- `start`: Correspondiente a producción
 
-- `build` correspondiente a empaquetar nuestra aplicación
+- `build`: Correspondiente a empaquetar nuestra aplicación
 
-- `dev` correspondiente a desarrollo, que es en el que estamos trabajando actualmente.
+- `dev`: Correspondiente a desarrollo, entorno en el que queremos trabajar.
 
-Por lo tanto, ejecutamos el comando:
+Entonces ejecutamos el comando:
 
 ```bash
 $ npm run dev
 ```
 
-Y nos coloca el siguiente aviso:
+Y la *terminal* nos arroja el siguiente resultado:
 
 ![Next.js 14](https://i.postimg.cc/x1pgYvCy/nextjs-3.jpg "npm run dev")
 
-Es decir, nos indica que la aplicación está utilizando la versión **14.0.2** de **Next.js**, está corriendo en el puerto local 3000 y que tardó 4 segundos en cargarse.
+Es decir, indica que la aplicación está utilizando la versión *14.0.2* de [Next.js 14](https://github.com/vercel/next.js), corre en el puerto local 3000 y tardó 4 segundos en cargarse.
 
-Si queremos que la aplicación sea cargada más rapidamente, existe una forma ejecutando el siguiente comando:
+Si queremos que la aplicación se cargue más rapidamente, podemos ejecutar el siguiente comando:
 
 ```bash
 $ npm run dev -- --turbo
 ```
 
-Es decir, se aplica una especie de **turbo** produciendo una demora en la carga de 1803ms, es decir, 1.8 segundos aproximadamente contra los 4 segundos de la ejecución sin turbo.
+Es decir, se aplica una especie de **turbo** produciendo una demora en la carga de 1803ms, o sea, 1.8 segundos aproximadamente vs 4 segundos de la ejecución sin turbo.
 
 ![Next.js 14](https://i.postimg.cc/y6cTqt27/nextjs-4.jpg "npm run dev -- --turbo")
 
-Una vez que lanzamos nuestra aplicación, abrimos nuestra aplicación que se encuentra en puerto local 3000 ingresando a y obtenemos el siguiente resultado:
+Una vez que lanzamos nuestra aplicación, la abrimos ingresando a http://localhost:3000/ y obtenemos el siguiente resultado:
 
 ![Next.js 14](https://i.postimg.cc/4yC9d47B/nextjs-5.jpg "Visualización inicial de la app")
 
