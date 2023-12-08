@@ -27,10 +27,13 @@
 6. [Importar y cargar fuentes](#importar-y-cargar-fuentes)
 7. [Agregar más fuentes al proyecto](#agregar-más-fuentes-al-proyecto)
 8. [Imágenes](#imágenes)
-
-
-
-
+9. [Sistema de enrutado por archivos](#sistema-de-enrutado-por-archivos)
+10. [Rutas anidadas](#rutas-anidadas)
+11. [Layouts que envuelven secciones especificas de nuestras rutas](#layouts-que-envuelven-secciones-especificas-de-nuestras-rutas)
+12. [Componente Link](#componente-link)
+13. [Hooks de Next Js](#hooks-de-next-js)
+14. [Base de datos Postgres](#base-de-datos-postgres)
+15. [Fetching de datos](#fetching-de-datos)
 
 
 
@@ -278,11 +281,11 @@ El formato de la imagen es *webp* y el tamaño se encuentra en *disk cache* < 24
 
 ### Sistema de enrutado por archivos
 
-Supongamos que queremos crear la ruta http://localhost:3000/dashboard. Inicialmente, esta ruta no existe y por lo tanto, arroja un error 404 como se muestra a continuación:
+Supongamos que queremos crear la ruta http://localhost:3000/dashboard. Inicialmente, esta ruta no existe y por lo tanto, arroja un error 404.
 
 ![Next.js 14](https://i.postimg.cc/dtggtSKq/nextjs-35.jpg "Enrutado por archivos")
 
-Por lo tanto, de acuerdo a la documentación, para crear la ruta http://localhost:3000/dashboard, debemos crear una carpeta dentro de **app** llamada **dashboard** y dentro de ella, un archivo llamado **page.tsx** 
+Por lo tanto, conforme a la documentación, para crear la ruta http://localhost:3000/dashboard, creamos una carpeta dentro de *app* llamada `dashboard` y dentro de ella, un archivo llamado `page.tsx` 
 
 ![Next.js 14](https://i.postimg.cc/J7jcf6zw/nextjs-36.jpg "Enrutado por archivos")
 
@@ -290,18 +293,17 @@ Una vez creado el archivo, creamos la función que actua como componente como se
 
 ![Next.js 14](https://i.postimg.cc/QtdCfMCx/nextjs-37.jpg "Enrutado por archivos")
 
-Con esto, basta simplemente para crear la ruta http://localhost:3000/dashboard. Guardamos los cambios y verificamos que los cambios se hayan aplicado a nuestra página 
+Con esto, basta simplemente para crear la ruta http://localhost:3000/dashboard. Guardamos los cambios y verificamos que los cambios se hayan aplicado a la página 
 
 ![Next.js 14](https://i.postimg.cc/mr8XvdLN/nextjs-38.jpg "Enrutado por archivos")
 
 ### Rutas anidadas
 
-Ahora, si queremos crear más rutas o rutas dentro de otras rutas. Por ejemplo, si queremos crear la ruta http://localhost:3000/dashboard/customers, inicialmente nos arroja error 404 porque no existe.
+Queremos crear más rutas o rutas dentro de otras rutas. Por ejemplo, si queremos crear la ruta http://localhost:3000/dashboard/customers, inicialmente nos arroja error 404 porque no existe.
 
-Para solucionar esto, creamos dentro de la carpeta *dashboard* la carpeta *customers* y dentro de ella, el archivo **page.tsx** con el componente de la misma manera como lo definimos para el caso del dashboard.
+Para solucionar esto, creamos dentro de la carpeta *dashboard* la carpeta *customers* y dentro de ella, el archivo `page.tsx` con el componente de la misma manera como lo definimos para el caso del dashboard.
 
 ![Next.js 14](https://i.postimg.cc/wjc0J9rj/nextjs-39.jpg "Enrutado por archivos")
-
 
 Guardamos los cambios y verificamos que los cambios se hayan aplicado correctamente.
 
@@ -309,43 +311,43 @@ Guardamos los cambios y verificamos que los cambios se hayan aplicado correctame
 
 ### Layouts que envuelven secciones especificas de nuestras rutas
 
-Anteriormente, vimos que el archivo **layout.tsx** envuelve a toda nuestra aplicación. Ahora bien, podemos tener layouts que envuelvan solamente parte de nuestras rutas.
+Anteriormente, vimos que el archivo `layout.tsx` envuelve a toda nuestra aplicación. Ahora bien, podemos tener layouts que envuelvan solamente parte de nuestras rutas.
 
-Supongamos, por ejemplo, que quiero tener un layout que envuelva a los componentes de **dashboard**. Entonces, dentro de la carpeta *dashboard*, creo el archivo **layout.tsx** y escribo el código que se muestra a continuación:
+Supongamos que quiero tener un layout que envuelva a los componentes de *dashboard*. Entonces, dentro de la carpeta *dashboard*, creo el archivo `layout.tsx` y escribo el código que se muestra a continuación:
 
 ![Next.js 14](https://i.postimg.cc/RZmTTPvs/nextjs-41.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
 
-- Si ingresamos a la seccion de **customers**, observamos que el *layout* se encuentra envolviendo este componente.
+- Si ingresamos a la seccion de *customers*, observamos que el *layout* se encuentra envolviendo este componente.
 
 ![Next.js 14](https://i.postimg.cc/cLXYgzSf/nextjs-42.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
 
-- Si ingresamos a la seccion de **invoices**, observamos que el *layout* se encuentra envolviendo este componente.
+- Si ingresamos a la seccion de *invoices*, observamos que el *layout* se encuentra envolviendo este componente.
 
 ![Next.js 14](https://i.postimg.cc/fbydxvzp/nextjs-43.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
 
-Si nos dirigimos al directorio raiz (http://localhost:3000/) observamos que este layout no lo está envolviendo porque solo envuelve a los componentes que contiene **dashboard** como mencionamos anteriormente.
+Si nos dirigimos al directorio raiz (http://localhost:3000/) observamos que este layout no lo está envolviendo porque solo envuelve a los componentes que contiene *dashboard*.
 
 ![Next.js 14](https://i.postimg.cc/G2g0NdGq/nextjs-44.jpg "Layouts que envuelven secciones especificas de nuestras rutas")
 
-### Navegación: Componente Link
+### Componente Link
 
-Ahora, cada vez que navego por la página, es decir, voy desde *invoices* a *customers* o viceversa por ejemplo se recarga toda la página y esto produce un rendimiento negativo para el usuario y además creamos el componente *SideNav* en el layout para evitar tenerlo que cargar cada vez estoy navegando por el dashboard. Además, en el caso de tener un estado, se lo pierde porque se vuelve a recargar la página.
+Cada vez que navego por la página, es decir, voy desde *invoices* a *customers* o viceversa se recarga toda la página y esto produce un rendimiento negativo para el usuario y creamos el componente *SideNav* en el layout para evitar tenerlo que cargar cada vez estoy navegando por el dashboard. Además, en el caso de tener un estado, se lo pierde porque se vuelve a recargar la página.
 
-Por lo tanto, queremos que haya una navegación fluida como si fuera una **Single Page Application**, es decir, que reutilice todos los recursos posibles, que renderice solo los componentes que cambian y actualizar la URL sin necesidad de recargar toda la página.
+Por lo tanto, queremos que haya una navegación fluida como si fuera una **Single Page Application**, es decir, que reutilice todos los recursos posibles, que renderice solo los componentes que cambian y actualice la URL sin necesidad de recargar toda la página.
 
-Por lo tanto, para hacer este tipo de navegaciones podemos usar el componente de *NextJs* llamado **Link**.
+Por lo tanto, para hacer este tipo de navegaciones podemos usar el componente de [Next.js](https://github.com/vercel/next.js) llamado **Link**.
 
-Para utilizarlo, abrimos el archivo **nav-links.tsx** y analizamos su contendido.
+Para utilizarlo, abrimos el archivo `nav-links.tsx` y analizamos su contendido.
 
 ![Next.js 14](https://i.postimg.cc/T1n31s6X/nextjs-45.jpg "Navegación: Componente Link")
 
 - En primer lugar, se importan los iconos correspondientes a cada sección (Home, Customers, Invoices).
 
-- Luego, se encuentra el arreglo **links** que contiene justamente el nombre, la ruta y el icono de cada enlace.
+- Luego, se encuentra el arreglo `links` que contiene justamente el nombre, la ruta y el icono de cada enlace.
 
-- Finalmente, la función **NavLinks** realiza un mapeo para cada link agregando una etiqueta `<a>` con el nombre y el icono del link
+- Finalmente, la función `NavLinks` realiza un mapeo para cada link agregando una etiqueta `<a>` con el nombre y el icono del link
 
-Observemos que cada link está envuelto por una etiqueta anchor `<a>` que recarga la página cada vez navegamos y no es lo que queremos, vamos a reemplazar la etiqueta `<a>` por el componente `<link>` de la siguiente manera:
+Observemos que cada link está envuelto por una etiqueta anchor `<a>` que recarga la página cada vez navegamos y no es lo que queremos, vamos a reemplazar la etiqueta `<a>` por el componente `<Link>` de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/Pfpq8xjK/nextjs-46.jpg "Navegación: Componente Link")
 
@@ -353,43 +355,41 @@ De esta manera, se logra una carga más rápida de la página porque solo carga 
 
 ### Hooks de Next Js
 
-Una vez terminada la navegación, podemos navegar tranquilamente entre las secciones pero cuando cambiamos, por ejemplo, de invoices a customers no se detalla que estamos en esa sección a pesar de que la ruta se actualiza y el contenido también.
+Una vez terminada la navegación, podemos navegar tranquilamente entre las secciones pero cuando cambiamos de *invoices* a *customers* no se detalla que estamos en esa sección a pesar de que la ruta se actualiza y el contenido también.
 
-Entonces, vamos a mejorar la experiencia para el usuario y dependiendo de la ruta en la que estemos, vamos a cambiar los estilos para que se vea cuál está activo.
+Entonces, vamos a mejorar la experiencia para el usuario y dependiendo de la ruta en la que estemos, vamos a cambiar los estilos para que se vea cuál es la sección que se encuentra activa.
 
-Para conseguir esto, *NextJs* cuenta con varios **hooks** que permiten de varias formas acceder a información de las rutas, de los path's, del router para que actualizarlo o cambiarlo.
+Para conseguir esto, [Next.js](https://github.com/vercel/next.js) cuenta con varios **hooks** que permiten de varias formas acceder a información de las rutas, de los *path*, del router para actualizarlos o cambiarlos.
 
-En este caso, vamos a utilizar el hook **usePathName()** para leer el path en el que nos encontramos actualmente. Pero, por defecto, este hook solo se utiliza del lado del servidor por lo que si queremos tambien que se renderize del lado del cliente tenemos que agregar la directiva `use client` de la siguiente manera:
+En este caso, vamos a utilizar el hook **usePathName()** para leer el *path* en el que nos encontramos actualmente. Por defecto, este hook se utiliza sólo del lado del servidor por lo que si queremos que también se renderize del lado del cliente tenemos que agregar la directiva `use client` de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/zBmfW82b/nextjs-47.jpg "Hooks de Next Js")
 
-De este modo, cada vez que naveguemos entre secciones, se va a colocar un fondo celeste y letras azul sobre la sección que estemos navegando actualmente.
+De este modo, cada vez que naveguemos entre secciones, se va a colocar un fondo celeste y letras azul sobre la sección que estemos actualmente.
 
 ![Next.js 14](https://i.postimg.cc/qMQNNtfz/nextjs-48.jpg "Hooks de Next Js")
 
-### Base de datos: Postgres 
+### Base de datos Postgres 
 
-Una vez loggeados con nuestra cuenta de Vercel, creamos una nueva DB con el nombre **customer-invoices** por ejemplo. Luego, copiamos las siguientes variables de entorno:
+Una vez loggeados con nuestra cuenta de [Vercel](https://vercel.com/), creamos una nueva DB con el nombre **customer-invoices** por ejemplo. Luego, copiamos las siguientes variables de entorno:
 
 ![Next.js 14](https://i.postimg.cc/TYLYvbZ6/nextjs-49.jpg "Base de datos: Postgres")
 
-Una vez copiadas las variables de entorno, nos dirigimos al archivo **.env.example**, le modificamos el nombre a **.env** y voy a copiar todas las variables de entorno de la base de datos que cree.
+Una vez copiadas las variables de entorno, nos dirigimos al archivo `.env.example`, le modificamos el nombre a `.env` y copiamos todas las variables de entorno de la base de datos que cree. Con esto, ya estamos en condiciones de poder conectarnos a la base de datos.
 
-Con esto, ya estamos en condiciones de poder conectarnos a la base de datos.
+Ahora, se pueden usar varios clientes de **postgresSQL** pero lo ideal es utilizar el de [Vercel](https://vercel.com/) porque ya sabe cuáles son las variables de entorno y ni siquiera hay que crear la conexion.
 
-Ahora, se pueden usar varios clientes de **postgresSQL** pero lo ideal es utilizar el de *Vercel* porque como *Vercel* ya sabe cuales son las variables de entorno, ni siquiera hay que crear la conexion.
-
-Entonces, instalamos la dependencia para trabajar con la base de datos de Postgres en la carpeta de nuestro proyecto ejecutando el comando:
+Entonces, instalamos la dependencia para trabajar con la base de datos de [Postgres](https://www.postgresql.org/) en la carpeta de nuestro proyecto ejecutando el comando:
 
 ```bash
 $ npm install @vercel/postgres
 ```
 
-Ahora, el archivo **seed.js** dentro de la carpeta scripts, funciona como una semilla para crear datos en mi DB. Luego, nos dirigimos al archivo *package.json* y en la seccion de scripts creamos el siguiente comando:
+El archivo `seed.js` dentro de la carpeta scripts, funciona como una semilla para crear datos en mi DB. Luego, nos dirigimos al archivo `package.json` y en la sección de scripts creamos el siguiente comando:
 
 ![Next.js 14](https://i.postimg.cc/437zKP2x/nextjs-50.jpg "Base de datos: Postgres")
 
-Con esto, va a importar (realizar un require, por eso `-r`) el modulo *dotenv/config* y ejecuta el script *seed.js* y asi nos aseguramos que está leyendo la variable de entorno.
+Con esto, va a importar (realizar un require, por eso `-r`) el modulo *dotenv/config* y ejecuta el script *seed.js* y así nos aseguramos que está leyendo la variable de entorno.
 
 Luego, ejecutamos el comando:
 
