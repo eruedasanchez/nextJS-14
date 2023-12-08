@@ -22,8 +22,14 @@
 1. [Inicialización de un proyecto](#inicialización-de-un-proyecto)
 2. [Capítulo 1](#capítulo-1)
 3. [Revisando código](#revisando-código)
-4. [Capitulo 1](#capitulo-1)
-5. [Capitulo 1](#capitulo-1)
+4. [Analizando carpetas](#analizando-carpetas)
+5. [Cargando los estilos](#cargando-los-estilos)
+6. [Importar y cargar fuentes](#importar-y-cargar-fuentes)
+
+
+<!-- 5. [](#) -->
+
+
 
 ### Inicialización de un proyecto
 
@@ -101,77 +107,77 @@ Una vez que lanzamos nuestra aplicación, la abrimos ingresando a http://localho
 
 ### Revisando código
 
-Ahora, analicemos los archivos del proyecto:
+Analicemos los archivos del proyecto:
 
 ![Next.js 14](https://i.postimg.cc/8Pz3fb66/nextjs-6.jpg "Archivos del proyecto")
 
-- `tsconfig.json` cuenta con la configuración de **Typescript**
+- `tsconfig.json`: Cuenta con la configuración de [TypeScript](https://github.com/microsoft/TypeScript)
 
-- `tailwind.config.ts` cuenta con la configuración de **tailwind**
+- `tailwind.config.ts`: Cuenta con la configuración de [TailwindCss](https://tailwindcss.com/)
 
-- `postcss.config.js` es un archivo de configuración que necesita **tailwind** para poder funcionar
+- `postcss.config.js`: Archivo de configuración que necesita [TailwindCss](https://tailwindcss.com/) para poder funcionar
 
-- `package-lock.json` que contiene las dependencias fijadas cuando utilizamos **npm** 
+- `package-lock.json`: Contiene las dependencias fijadas cuando utilizamos [Npm](https://github.com/npm) 
 
-- `next.config.js` cuenta con la configuración de **next.js** y se encuentra inicialmente vacia
+- `next.config.js`: Cuenta con la configuración de [Next.js](https://github.com/vercel/next.js) y se encuentra inicialmente vacia
 
-- `.gitignore` que cuenta con todos los archivos que queremos ignorar en nuestro repositorio de GitHub
+- `.gitignore`: Cuenta con todos los archivos que queremos ignorar en nuestro repositorio de [GitHub](https://github.com/) 
 
-- `.eslintrc.json` que cuenta con las reglas de ESLint para asegurarse que es rápida por defecto y cuando se utilicen "cosas" que pueden ser peligrosas, vamos a ser advertidos gracias a ello
+- `.eslintrc.json`: Cuenta con las reglas de [ESLint](https://eslint.org/) para asegurarse que es rápida por defecto y cuando se utilicen *"cosas"* que pueden ser peligrosas, vamos a ser advertidos gracias a estas reglas.
 
-- `package.json` que contiene todas las dependencias que estamos utilizando 
+- `package.json`: Contiene todas las dependencias que estamos utilizando en el proyecto 
 
-- `.nvmrc` es un archivo que va a intentar detectar que versión de node es la que tiene que utilizar. Por eso, en su contenido se encuentra el número 18 
+- `.nvmrc`: Archivo que intenta detectar que versión de [Node](https://github.com/nodejs/node) es la que se tiene que utilizar. Por eso, en su contenido se encuentra el número 18.
 
 ### Analizando carpetas
 
-Comenzamos analizando la carpeta **scripts**
+Comenzamos analizando la carpeta *scripts*.
 
 ![Next.js 14](https://i.postimg.cc/JzXCNTSt/nextjs-7.jpg "Carpeta scripts")
 
-Esta carpeta la crea la plantilla extraida del repositorio de [Vercel](https://github.com/vercel/next-learn/tree/main/dashboard/starter-example) que estamos utilizando para crear el dashboard. Contiene el archivo `seed.js` de manera que cuando lo ejecutemos, va a inicializar toda una base de datos.
+Contiene el archivo `seed.js` de manera que, cuando lo ejecutemos, inicializa toda una base de datos.
 
-Continuamos analizando la carpeta **public**
+Continuamos analizando la carpeta *public*.
 
 ![Next.js 14](https://i.postimg.cc/hvmn50pt/nextjs-8.jpg "Carpeta public")
 
-Esta carpeta contiene todos los archivos que queremos que sean de tipo estático como imagenes, videos, etc. Contiene la carpeta `customers` que contiene imagenes de clientes que vamos a utilizar en nuestra web. Además, contiene el `favicon` de nuestra aplicación y unas capturas del diseño terminado de la aplicación. 
+Esta carpeta contiene todos los archivos que son de tipo estático como imagenes, videos, etc. La carpeta *customers* contiene imagenes de clientes que vamos a utilizar en nuestra web. Además, contiene el `favicon` de nuestra aplicación y unas capturas del diseño terminado de la aplicación. 
 
-Ahora, vamos a analizar la carpeta **más importante** de **NextJS** que es **app**.
+Ahora, vamos a analizar la carpeta **más importante** de [Next.js 14](https://github.com/vercel/next.js) llamada *app*.
 
 ![Next.js 14](https://i.postimg.cc/d1VWStQH/nextjs-9.jpg "Carpeta app")
 
-- `page.tsx` indica que, cada vez que quiera crear una ruta en nuestra página, vamos a tener que crear un archivo `page.tsx` Typescript o `page.jsx` en el caso de usar Javascript. En este caso, como no la contiene ninguna carpeta, y se encuentra luego de app, corresponde a la ruta `/`, es decir, su contenido es el que se muestra en http://localhost:3000/ o en http://localhost:3000.
+- `page.tsx`: Indica que, cada vez que se quiera crear una ruta en nuestra página, tenemos que crear un archivo *page.tsx* si utilizamos [TypeScript](https://github.com/microsoft/TypeScript) o *page.jsx* si utilizamos [Javascript](https://www.javascript.com/). Como no la contiene ninguna carpeta y se encuentra luego de *app*, corresponde a la ruta `/`, es decir, su contenido es el que se muestra en http://localhost:3000/ o http://localhost:3000.
 
-- `layout.tsx` envuelve la página, en nuestro caso, `{children}` corresponde a `page.jsx`. Por ejemplo, si queremos, mostrar en todas nuestras rutas la barra de navegación, podriamos colocarla en el archivo de **layout** para que se visualice en todas las rutas que definamos.
+- `layout.tsx`: Envuelve la página, en nuestro caso, `{children}` corresponde a *page.tsx*. Por ejemplo, si queremos mostrar en todas nuestras rutas la barra de navegación, podriamos colocarla en el archivo de *layout* para que se visualice en todas las rutas que definamos.
 
-- `ui` es un carpeta que contiene componentes ya creados y subidos al repositorio que vamos a utilizar para implementar el dashboard.
+- `ui`: Carpeta que contiene componentes ya creados y subidos al repositorio que vamos a utilizar para implementar el dashboard.
 
 ![Next.js 14](https://i.postimg.cc/fL1yyCLx/nextjs-10.jpg "Carpeta ui")
 
-Además, cuenta con un archivo `global.css` con los estilos que vamos a tener que cargar.
+Además, cuenta con el archivo *global.css* con los estilos que vamos a tener que cargar.
 
-- `lib` es un carpeta que contiene las herramientas para hacer fetching de datos `data.ts` para conectarse con DB **postgres**, utilidades `utils.ts`, definiciones `definitions.ts` de los tipos de TS que vamos a utilizar en nuestra aplicación y `placeholder-data.js` en el caso de que no deseemos hacer el fetching con sql y si con placeholder.
+- `lib`: Carpeta que contiene las herramientas para hacer *fetching de datos*, `data.ts` para conectarse con DB [Postgres](https://github.com/postgres/postgres), utilidades `utils.ts`, definiciones `definitions.ts` de los tipos de [TypeScript](https://github.com/microsoft/TypeScript) que vamos a utilizar en nuestra aplicación y `placeholder-data.js` en el caso de que no deseemos hacer el fetching con SQL y si con placeholder.
 
 ### Cargando los estilos
 
-Para cargar los estilos globales, tenemos que ir a **layout.tsx** porque envuelve toda la aplicación y como queremos que los estilos globales queremos que sean para toda la aplicación, lo importamos en este archivo de la siguiente manera:
+Para cargar los estilos globales nos dirigimos a *layout.tsx* porque envuelve toda la aplicación y como estos estilos son para toda la aplicación, lo importamos en este archivo de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/nrTd9cN8/nextjs-11.jpg "Cargando estilos globales")
 
-Ahora, visitamos la pagina y vemos que se aplicaron los estilos globales:
+Ahora, recargamos la pagina y vemos que se aplicaron los estilos globales:
 
 ![Next.js 14](https://i.postimg.cc/RVm0dCyr/nextjs-12.jpg "Cargando estilos globales")
 
-También tenemos otra forma de cargar estilos además de los estilos globaless y los de Tailwind. Esta forma es a traves de los **CSS modules**. Para ello, creamos un archivo dentro de la carpeta **ui** llamado **home.module.css** donde escribimos el nombre del archivo .module para poder detectar que estamos queriendo utilizar un módulo.
+También tenemos otra forma de cargar estilos además de los estilos globales y los de [TailwindCss](https://tailwindcss.com/). Esta forma es a través de los **CSS modules**. Para ello, creamos un archivo dentro de la carpeta *ui* llamado *home.module.css* donde escribimos el *"nombre del archivo".module* para detectar que estamos queriendo utilizar un módulo.
 
 ![Next.js 14](https://i.postimg.cc/mD8CFpV6/nextjs-13.jpg "Cargando estilos mediante CSS modules")
 
-Una vez creado el archivo, creamos una clase **shape** que representa un triangulo de la siguiente manera:
+Una vez creado el archivo, creamos una clase *shape* que representa un triangulo de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/g0VDSDkG/nextjs-14.jpg "Cargando estilos mediante CSS modules")
 
-Y finalmente, aplicamos este módulo en, por ejemplo, el archivo **page.tsx** de la siguiente manera:
+Finalmente, aplicamos este módulo en por ejemplo, el archivo *page.tsx* de la siguiente manera:
 
 ![Next.js 14](https://i.postimg.cc/qR0tJfVC/nextjs-15.jpg "Cargando estilos mediante CSS modules")
 
@@ -183,9 +189,9 @@ Ahora, si inspeccionamos la página podemos observar que al aplicar un CSS modul
 
 ![Next.js 14](https://i.postimg.cc/prBKbD0z/nextjs-17.jpg "Cargando estilos mediante CSS modules")
 
-### Importar y carganr fuentes
+### Importar y cargar fuentes
 
-Comenzamos creando en la carpeta **ui** un archivo llamado **fonts.ts**
+Creamos dentro de la carpeta *ui* un archivo llamado *fonts.ts*
 
 ![Next.js 14](https://i.postimg.cc/44c34DC3/nextjs-18.jpg "Importando y cargando fuentes")
 
