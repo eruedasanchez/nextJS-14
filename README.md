@@ -634,6 +634,24 @@ Ahora, validamos la información que almacenamos en la variable *rawFormData* do
 
 Ahora, vamos a crear la fecha y elegimos el metodo *ISOString* porque el formato que necesita es, por ejemplo, 2023-11-25 y obtenemos solo la componente *date* porque la *hora* no me interesa.
 
+![Next.js 14](https://i.postimg.cc/FsjRydfw/nextjs-88.jpg "Crear la fecha")
+
+### Llamar a la base de datos e implementar información
+
+Para ello, vamos a utilizar SQL ejecutando el siguiente código:
+
+![Next.js 14](https://i.postimg.cc/ZYsgwVNd/nextjs-89.jpg "Llamar a la base de datos e implementar información")
+
+Una vez hecho esto, creamos una factura para el cliente de la siguiente manera:
+
+![Next.js 14](https://i.postimg.cc/GhrQJD7y/nextjs-90.jpg "Llamar a la base de datos e implementar información")
+
+### Evitar la caché y redireccionar con NextJs
+
+
+
+
+
 
 
 

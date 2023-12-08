@@ -4,6 +4,7 @@
 
 import { z } from 'zod';
 import { Invoice } from './definitions';
+import { sql } from '@vercel/postgres';
 
 const createInvoiceSchema = z.object({
     id: z.string(),
@@ -26,9 +27,13 @@ export async function createInvoice(formData:FormData) {
     }) 
 
     // transformamos para evitar errores de redondeo
-    const amountInCnets = amount * 100;
+    const amountInCents = amount * 100;
 
     // creamos la fecha actual 
     const [date] = new Date().toISOString().split('T'); // .split('T') -> quita el timestamp
 
+    await sql`
+    INSERT INTO invoices (customer_id, amount, status, date)
+    VALUES (${customerId}, ${amount}, ${status}, ${date})
+    `
 }
