@@ -1,22 +1,21 @@
 <div align="center">
   
-  ![GitHub repo size](https://img.shields.io/github/repo-size/eruedasanchez/multi-step-form)
-  ![GitHub stars](https://img.shields.io/github/stars/eruedasanchez/multi-step-form?style=social)
-  ![GitHub forks](https://img.shields.io/github/forks/eruedasanchez/multi-step-form?style=social)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/eruedasanchez/nextJS-14)
+  ![GitHub stars](https://img.shields.io/github/stars/eruedasanchez/nextJS-14?style=social)
+  ![GitHub forks](https://img.shields.io/github/forks/eruedasanchez/nextJS-14?style=social)
   [![Twitter Follow](https://img.shields.io/twitter/follow/RSanchez_Eze?style=social)](https://twitter.com/intent/follow?screen_name=RSanchez_Eze)
-  <br />
-  <br />
+  <br/>
+  <br/>
 
   <h2 align="center">Next.js 14</h2>
 
-  Build a Multi Step Form which users should be able to complete each step of the sequence,
-  go back to a previous step to update their selections, see a summary of their selections on the final step and confirm their order.<br/>Responsive for all devices. Build using React Js.
+  Tutorial de [Next.js 14](https://github.com/vercel/next.js) donde se verá desde la introducción hasta la conexión a una base de datos PostgreSQL, pasando por estilos, fuentes, imágenes, optimización de carga y más.
 
-  <a href="https://multi-steps-form-six-gamma.vercel.app/multi-step-form/1" target="_blank"><strong>➥ Live Demo</strong></a>
+  Además, se verá desde la sincronización de URL hasta la manipulación de datos y la interacción con bases de datos.
 
+  Basado en el libro [Learn Next.js](https://nextjs.org/learn) y en las anotaciones de [Miguel Ángel Durán](https://github.com/midudev) 
 </div>
-
-<br />
+<br/>
 
 ### Inicialización de un proyecto
 
