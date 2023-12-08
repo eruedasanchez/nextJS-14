@@ -13,7 +13,7 @@
 
   Además, se verá desde la sincronización de URL hasta la manipulación de datos y la interacción con bases de datos.
 
-  Basado en el libro [Learn Next.js](https://nextjs.org/learn) y en las anotaciones de [Miguel Ángel Durán](https://github.com/midudev) 
+  Basado en el libro [Learn Next.js](https://nextjs.org/learn) y en las anotaciones de [Miguel Ángel Durán](https://github.com/midudev). 
 </div>
 <br/>
 
@@ -50,13 +50,6 @@
 29. [Crear la fecha](#crear-la-fecha)
 30. [Llamar a la base de datos e implementar información](#llamar-a-la-base-de-datos-e-implementar-información)
 31. [Evitar la caché y redireccionar con NextJs](#evitar-la-caché-y-redireccionar-con-nextjs)
-
-
-
-
-<!-- 5. [](#) -->
-
-
 
 ### Inicialización de un proyecto
 
